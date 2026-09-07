@@ -136,16 +136,12 @@
     .btn-blue {
       background-color: #1d4ed8;
     }
+    .btn-purple {
+      background-color: #7c3aed;
+    }
     .btn-danger {
       background-color: #b91c1c;
     }
-    .btn-dashed {
-      border: 1.5px dashed #94a3b8;
-      background-color: #f8fafc;
-      color: #64748b;
-    }
-
-    /* Safety Card List Styles */
     .safety-list {
       display: flex;
       flex-direction: column;
@@ -176,18 +172,17 @@
 
   <div class="container">
     
-    <!-- Top Header Card -->
+    <!-- Top Header -->
     <div class="header-card">
       <span class="badge">⭐ 5.0 RATED SERVICE</span>
       <div class="header-title">🚗 ANA CALL DRIVER SERVICE</div>
       <div class="header-subtitle">Govt Approved • Safe • Reliable 24x7</div>
-      
       <div class="banner-note">
-        💡 <strong>சரியான பயணக் கட்டணம் (Accurate Fare Estimate):</strong> முன்கூட்டியே கட்டணத்தைத் துல்லியமாகக் கணக்கிட்டு உடனே டிரைவரை புக் செய்ய எங்கள் ஆன்லைன் ஃபார்மைப் பயன்படுத்தவும்!
+        💡 <strong>சரியான பயணக் கட்டணம் (Accurate Fare Estimate):</strong> முன்கூட்டியே கட்டணத்தைத் துல்லியமாகக் கணக்கிட்டு புக் செய்ய எங்கள் ஆன்லைன் புக்கிங் ஃபார்மைப் பயன்படுத்தவும்!
       </div>
     </div>
 
-    <!-- Mobile Input Card -->
+    <!-- Phone Input -->
     <div class="card">
       <label class="card-title" for="phoneInput">Customer / Driver WhatsApp Number</label>
       <input type="tel" id="phoneInput" class="input-box" placeholder="9876543210">
@@ -205,73 +200,55 @@
       </div>
     </div>
 
-    <!-- Customer Safety & Guidelines Card -->
+    <!-- Driver Onboarding Section -->
+    <div class="card">
+      <div class="card-title">🚗 DRIVER ONBOARDING & MESSAGES</div>
+      <button class="btn btn-purple" style="width: 100%;" onclick="sendDriverJoiningInvite()">
+        📲 SEND DRIVER JOINING FORM (WHATSAPP)
+      </button>
+    </div>
+
+    <!-- Safety Rules Section -->
     <div class="card">
       <div class="card-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
-      
       <div class="safety-list">
-        <div class="safety-item">
-          <span>🥇</span>
-          <span><strong>Experienced Drivers Only:</strong> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே தேர்வு செய்யப்படுகிறார்கள்.</span>
-        </div>
-        <div class="safety-item">
-          <span>📜</span>
-          <span><strong>License Verified:</strong> ஒவ்வொரு ஓட்டுநரின் அசல் உரிமமும் முழுமையாக சரிபார்க்கப்படுகிறது.</span>
-        </div>
-        <div class="safety-item">
-          <span>🔒</span>
-          <span><strong>Verified Records:</strong> ஓட்டுநர்களின் அடையாள ஆவணங்கள் சரிபார்க்கப்பட்டு பாதுகாக்கப்படுகின்றன.</span>
-        </div>
-        <div class="safety-item">
-          <span>🚫</span>
-          <span><strong>Strict Discipline:</strong> சேவையில் குறைபாடுகள் இருந்தால் உடனடி பணிநீக்கம் செய்யப்படுவர்.</span>
-        </div>
-        <div class="safety-item">
-          <span>📹</span>
-          <span><strong>Live Confirmation:</strong> சரியான ஓட்டுநர்தான் வந்துள்ளாரா என்பதை நேரலையில் உறுதிசெய்கிறோம்.</span>
-        </div>
+        <div class="safety-item"><span>🥇</span><span><strong>Experienced Drivers Only:</strong> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</span></div>
+        <div class="safety-item"><span>📜</span><span><strong>License Verified:</strong> ஓட்டுநர் உரிமம் முழுமையாக சரிபார்க்கப்படுகிறது.</span></div>
+        <div class="safety-item"><span>🔒</span><span><strong>Verified Records:</strong> ஓட்டுநர்களின் அடையாள ஆவணங்கள் சரிபார்க்கப்பட்டு நிர்வாகப் பாதுகாப்பில் வைக்கப்படுகின்றன.</span></div>
+        <div class="safety-item"><span>🚫</span><span><strong>Strict Discipline:</strong> குறைபாடுகள் இருந்தால் உடனடி பணிநீக்கம்.</span></div>
+        <div class="safety-item"><span>📹</span><span><strong>Live Confirmation:</strong> நேரலையில் சரியான டிரைவர் உறுதி செய்யப்படுகிறார்.</span></div>
       </div>
-
       <div class="safety-warning">
-        ⚠️ <strong>முக்கிய அறிவிப்பு:</strong> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். அலுவலக அனுமதியின்றி நேரடியாக அழைத்தால் நிர்வாகம் எவ்விதப் பொறுப்பும் ஏற்காது.
+        ⚠️ <strong>முக்கிய அறிவிப்பு:</strong> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
       </div>
-
       <button class="btn btn-danger" style="width: 100%;" onclick="sendSafetyRules()">
         📲 SEND SAFETY RULES VIA WHATSAPP
       </button>
     </div>
 
-    <!-- Forms & Links Card -->
+    <!-- Forms & Links Box -->
     <div class="card">
       <div class="card-title">📋 FORMS & LINKS</div>
       <div class="btn-grid">
         <a href="https://script.google.com/macros/s/AKfycbwH6qA5AveiOPqw6qBvhvcUTnxXnaJ7S2ukayXlOvuENOZ_ec3BE0Vr_zonn7Mt4qkDmQ/exec" target="_blank" class="btn btn-blue">
           📋 ONLINE BOOKING
         </a>
-        <a href="#" class="btn btn-blue">
+        <a href="https://tally.so/r/A7eoky" target="_blank" class="btn btn-blue">
           🚗 DRIVER JOINING
         </a>
-      </div>
-    </div>
-
-    <!-- Future Slots Card -->
-    <div class="card">
-      <div class="card-title">➕ FUTURE SLOTS</div>
-      <div class="btn-grid">
-        <button class="btn btn-dashed">+ NEW FORM</button>
-        <button class="btn btn-dashed">+ NEW FORM</button>
       </div>
     </div>
 
   </div>
 
   <script>
-    const bookingFormUrl = "https://script.google.com/macros/s/AKfycbwH6qA5AveiOPqw6qBvhvcUTnxXnaJ7S2ukayXlOvuENOZ_ec3BE0Vr_zonn7Mt4qkDmQ/exec";
+    const customerBookingUrl = "https://script.google.com/macros/s/AKfycbwH6qA5AveiOPqw6qBvhvcUTnxXnaJ7S2ukayXlOvuENOZ_ec3BE0Vr_zonn7Mt4qkDmQ/exec";
+    const driverFormUrl = "https://tally.so/r/A7eoky";
 
     function getFormattedPhone() {
       let phone = document.getElementById('phoneInput').value.trim().replace(/[^0-9+]/g, '');
       if (!phone) {
-        alert('தயவுசெய்து வாடிக்கையாளர் மொபைல் எண்ணை உள்ளிடவும்!');
+        alert('தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!');
         return null;
       }
       if (phone.length === 10) phone = '91' + phone;
@@ -285,20 +262,26 @@
     }
 
     function sendWelcome() {
-      const msg = `⚡ WELCOME TO *ANA CALL DRIVER SERVICE* ⚡\n⚡ Premium | Safe | Reliable ⚡\n\nThank you for contacting us! 🙏 We are ready to drive you safely! 🚗💨\n\n👑 WHY WE ARE THE BEST? 👑\n🥇 Government Approved Service (100% Legal & Safe) 📜\n⭐ 120+ Satisfied Google Customers (5-Star Rated) ⭐⭐⭐⭐⭐\n📍 Service Available: City Local, Outstation Trips & Drops! 🗺️\n\n💡 *முன்கூட்டியே துல்லியமான பயணக் கட்டணத்தை அறிந்து உடனே புக் செய்ய:*\n👉 *Book Online:* ${bookingFormUrl}\n\n📞 Direct Call / WhatsApp: 7358366165 📱\n✨ Relax & Enjoy Your Ride... We Will Drive! ✨`;
+      const msg = `⚡ WELCOME TO *ANA CALL DRIVER SERVICE* ⚡\n⚡ Premium | Safe | Reliable ⚡\n\nThank you for contacting us! 🙏 We are ready to drive you safely! 🚗💨\n\n👑 WHY WE ARE THE BEST? 👑\n🥇 Government Approved Service (100% Legal & Safe) 📜\n⭐ 120+ Satisfied Google Customers (5-Star Rated) ⭐⭐⭐⭐⭐\n📍 Service Available: City Local, Outstation Trips & Drops!\n\n💡 *முன்கூட்டியே துல்லியமான பயணக் கட்டணத்தை அறிந்து உடனே புக் செய்ய:*\n👉 *Book Online:* ${customerBookingUrl}\n\n📞 Direct Call / WhatsApp: 7358366165 📱\n✨ Relax & Enjoy Your Ride... We Will Drive! ✨`;
       sendWhatsApp(msg);
     }
 
     function sendTariff() {
-      const msg = `💰 *ANA CALL DRIVER SERVICE - கட்டண விவரங்கள்*\n\nஎங்கள் சேவைக் கட்டணங்கள் மிகக் குறைவானவை & வெளிப்படையானவை.\n\n📍 உங்கள் பயணத் தூரத்திற்கான சரியான கட்டணத்தை உடனே கணக்கிட இந்த ஆன்லைன் லிங்க்கைப் பயன்படுத்தவும்:\n👉 ${bookingFormUrl}\n\n📞 தொடர்பு எண்: 7358366165`;
+      const msg = `💰 *ANA CALL DRIVER SERVICE - கட்டண விவரங்கள்*\n\nஎங்கள் சேவைக் கட்டணங்கள் மிகக் குறைவானவை & வெளிப்படையானவை.\n\n📍 உங்கள் பயணத் தூரத்திற்கான சரியான கட்டணத்தை உடனே கணக்கிட:\n👉 ${customerBookingUrl}\n\n📞 தொடர்பு எண்: 7358366165`;
       sendWhatsApp(msg);
     }
 
     function sendSafetyRules() {
-      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️\n\nவணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐\n\nஎங்கள் சேவை மூலம் பாதுகாப்பான பயணத்தை உறுதி செய்ய நாங்கள் பின்பற்றும் வழிமுறைகள்:\n\n✅ *1. Experienced Drivers Only:* நீண்ட கால அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே பணியமர்த்தப்படுகிறார்கள்.\n✅ *2. License Verification:* ஒவ்வொரு ஓட்டுநரின் ஓட்டுநர் உரிமம் (Driving License) முழுமையாக சரிபார்க்கப்படுகிறது.\n✅ *3. ID Verification:* ஓட்டுநர்களின் ஆவணங்கள் சரிபார்க்கப்பட்டு நிர்வாகப் பாதுகாப்பில் வைக்கப்படுகின்றன.\n✅ *4. Zero Tolerance Policy:* சேவையில் ஏதேனும் குறைபாடுகள் கண்டறியப்பட்டால், சம்பந்தப்பட்ட ஓட்டுநர் உடனடியாகப் பணிநீக்கம் செய்யப்படுவார்.\n✅ *5. Live Verification:* ஒதுக்கப்பட்ட ஓட்டுநர்தான் வந்துள்ளாரா என்பதை உறுதிப்படுத்த நேரலை வீடியோ சரிபார்ப்பு மேற்கொள்ளப்படுகிறது.\n\n⚠️ *முக்கிய எச்சரிக்கை:*\nவாடிக்கையாளர்கள் ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம் எனத் தாழ்மையுடன் கேட்டுக்கொள்கிறோம். அவ்வாறு நேரடியாக அழைத்தால் ஏற்படும் எவ்வித நிகழ்வுகளுக்கும் நிர்வாகம் பொறுப்பேற்காது.\n\nஎப்போதும் உங்களின் பாதுகாப்பான பயணமே எங்கள் முதன்மை நோக்கம்! 🙏✨\n📞 தொடர்பு எண்: 7358366165`;
+      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️\n\nவணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐\n\n✅ 1. Experienced Drivers Only\n✅ 2. License Verified\n✅ 3. Verified Records Protected\n✅ 4. Zero Tolerance Policy\n✅ 5. Live Driver Verification\n\n⚠️ *முக்கிய அறிவிப்பு:* ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.\n📞 தொடர்பு எண்: 7358366165`;
+      sendWhatsApp(msg);
+    }
+
+    function sendDriverJoiningInvite() {
+      const msg = `🚗 *வணக்கம்! ANA CALL DRIVER SERVICE-ல் இணைய தங்களை வரவேற்கிறோம்.* 🚗\n\nஎங்களுடன் இணைந்து ஓட்டுநராகப் பணிபுரிய கீழே உள்ள விண்ணப்பப் படிவத்தைப் பூர்த்தி செய்து, தேவையான ஆவணங்களை அப்லோட் செய்யவும்:\n\n👉 *Driver Registration Form:* ${driverFormUrl}\n\nவிவரங்களைச் சரிபார்த்துவிட்டு அலுவலகத்திலிருந்து உங்களை உடனே தொடர்புகொள்வோம்! 🤝\n📞 உதவிக்கு: 7358366165`;
       sendWhatsApp(msg);
     }
   </script>
 
 </body>
 </html>
+
