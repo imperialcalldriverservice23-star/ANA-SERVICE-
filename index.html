@@ -133,9 +133,6 @@
       color: #0f172a;
       border: 1px solid #cbd5e1;
     }
-    .btn-blue {
-      background-color: #1d4ed8;
-    }
     .btn-purple {
       background-color: #7c3aed;
     }
@@ -172,17 +169,17 @@
 
   <div class="container">
     
-    <!-- Top Header -->
+    <!-- Top Header Card -->
     <div class="header-card">
       <span class="badge">⭐ 5.0 RATED SERVICE</span>
       <div class="header-title">🚗 ANA CALL DRIVER SERVICE</div>
       <div class="header-subtitle">Govt Approved • Safe • Reliable 24x7</div>
       <div class="banner-note">
-        💡 <strong>சரியான பயணக் கட்டணம் (Accurate Fare Estimate):</strong> முன்கூட்டியே கட்டணத்தைத் துல்லியமாகக் கணக்கிட்டு புக் செய்ய எங்கள் ஆன்லைன் புக்கிங் ஃபார்மைப் பயன்படுத்தவும்!
+        💡 <strong>சரியான பயணக் கட்டணம்:</strong> முன்கூட்டியே கட்டணத்தைத் துல்லியமாகக் கணக்கிட்டு புக் செய்ய எங்கள் ஆன்லைன் புக்கிங் ஃபார்மைப் பயன்படுத்தவும்!
       </div>
     </div>
 
-    <!-- Phone Input -->
+    <!-- Phone Number Input -->
     <div class="card">
       <label class="card-title" for="phoneInput">Customer / Driver WhatsApp Number</label>
       <input type="tel" id="phoneInput" class="input-box" placeholder="9876543210">
@@ -195,12 +192,12 @@
       <div class="btn-grid">
         <button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
         <button class="btn btn-teal" onclick="sendTariff()">💰 TARIFF</button>
-        <button class="btn btn-light" onclick="sendWhatsApp('மன்னிக்கவும்! தற்போது அனைத்து டிரைவர்களும் பணியில் உள்ளனர். சிறிது நேரத்தில் தங்களைத் தொடர்பு கொள்கிறோம்.')">🚫 NO DRIVER</button>
-        <button class="btn btn-light" onclick="sendWhatsApp('📍 தயவுசெய்து உங்கள் தற்போதைய லொகேஷனை (WhatsApp Location Pin) பகிருங்கள்.')">📍 SEND LOCATION</button>
+        <button class="btn btn-light" onclick="sendNoDriver()">🚫 NO DRIVER</button>
+        <button class="btn btn-light" onclick="sendLocationRequest()">📍 SEND LOCATION</button>
       </div>
     </div>
 
-    <!-- Driver Onboarding Section -->
+    <!-- Driver Management Section -->
     <div class="card">
       <div class="card-title">🚗 DRIVER ONBOARDING & MESSAGES</div>
       <button class="btn btn-purple" style="width: 100%;" onclick="sendDriverJoiningInvite()">
@@ -208,13 +205,13 @@
       </button>
     </div>
 
-    <!-- Safety Rules Section -->
+    <!-- Customer Safety Rules Card -->
     <div class="card">
       <div class="card-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
       <div class="safety-list">
         <div class="safety-item"><span>🥇</span><span><strong>Experienced Drivers Only:</strong> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</span></div>
-        <div class="safety-item"><span>📜</span><span><strong>License Verified:</strong> ஓட்டுநர் உரிமம் முழுமையாக சரிபார்க்கப்படுகிறது.</span></div>
-        <div class="safety-item"><span>🔒</span><span><strong>Verified Records:</strong> ஓட்டுநர்களின் அடையாள ஆவணங்கள் சரிபார்க்கப்பட்டு நிர்வாகப் பாதுகாப்பில் வைக்கப்படுகின்றன.</span></div>
+        <div class="safety-item"><span>📜</span><span><strong>License Verified:</strong> உரிமம் முழுமையாக சரிபார்க்கப்படுகிறது.</span></div>
+        <div class="safety-item"><span>🔒</span><span><strong>Verified Records:</strong> அடையாள ஆவணங்கள் சரிபார்க்கப்பட்டு பாதுகாக்கப்படுகின்றன.</span></div>
         <div class="safety-item"><span>🚫</span><span><strong>Strict Discipline:</strong> குறைபாடுகள் இருந்தால் உடனடி பணிநீக்கம்.</span></div>
         <div class="safety-item"><span>📹</span><span><strong>Live Confirmation:</strong> நேரலையில் சரியான டிரைவர் உறுதி செய்யப்படுகிறார்.</span></div>
       </div>
@@ -224,19 +221,6 @@
       <button class="btn btn-danger" style="width: 100%;" onclick="sendSafetyRules()">
         📲 SEND SAFETY RULES VIA WHATSAPP
       </button>
-    </div>
-
-    <!-- Forms & Links Box -->
-    <div class="card">
-      <div class="card-title">📋 FORMS & LINKS</div>
-      <div class="btn-grid">
-        <a href="https://script.google.com/macros/s/AKfycbwH6qA5AveiOPqw6qBvhvcUTnxXnaJ7S2ukayXlOvuENOZ_ec3BE0Vr_zonn7Mt4qkDmQ/exec" target="_blank" class="btn btn-blue">
-          📋 ONLINE BOOKING
-        </a>
-        <a href="https://tally.so/r/A7eoky" target="_blank" class="btn btn-blue">
-          🚗 DRIVER JOINING
-        </a>
-      </div>
     </div>
 
   </div>
@@ -262,12 +246,22 @@
     }
 
     function sendWelcome() {
-      const msg = `⚡ WELCOME TO *ANA CALL DRIVER SERVICE* ⚡\n⚡ Premium | Safe | Reliable ⚡\n\nThank you for contacting us! 🙏 We are ready to drive you safely! 🚗💨\n\n👑 WHY WE ARE THE BEST? 👑\n🥇 Government Approved Service (100% Legal & Safe) 📜\n⭐ 120+ Satisfied Google Customers (5-Star Rated) ⭐⭐⭐⭐⭐\n📍 Service Available: City Local, Outstation Trips & Drops!\n\n💡 *முன்கூட்டியே துல்லியமான பயணக் கட்டணத்தை அறிந்து உடனே புக் செய்ய:*\n👉 *Book Online:* ${customerBookingUrl}\n\n📞 Direct Call / WhatsApp: 7358366165 📱\n✨ Relax & Enjoy Your Ride... We Will Drive! ✨`;
+      const msg = `⚡ WELCOME TO *ANA CALL DRIVER SERVICE* ⚡\n⚡ Premium | Safe | Reliable ⚡\n\nThank you for contacting us! 🙏 We are ready to drive you safely! 🚗💨\n\n👑 WHY WE ARE THE BEST? 👑\n🥇 Government Approved Service (100% Legal & Safe) 📜\n⭐ 120+ Satisfied Google Customers (5-Star Rated) ⭐⭐⭐⭐⭐\n📍 Service Available: City Local, Outstation Trips & Drops! 🗺️\n\n💡 *முன்கூட்டியே துல்லியமான பயணக் கட்டணத்தை அறிந்து உடனே புக் செய்ய:*\n👉 *Book Online:* ${customerBookingUrl}\n\n📞 Direct Call / WhatsApp: 7358366165 📱\n✨ Relax & Enjoy Your Ride... We Will Drive! ✨`;
       sendWhatsApp(msg);
     }
 
     function sendTariff() {
       const msg = `💰 *ANA CALL DRIVER SERVICE - கட்டண விவரங்கள்*\n\nஎங்கள் சேவைக் கட்டணங்கள் மிகக் குறைவானவை & வெளிப்படையானவை.\n\n📍 உங்கள் பயணத் தூரத்திற்கான சரியான கட்டணத்தை உடனே கணக்கிட:\n👉 ${customerBookingUrl}\n\n📞 தொடர்பு எண்: 7358366165`;
+      sendWhatsApp(msg);
+    }
+
+    function sendNoDriver() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE* 🚗\n✨ Premium | Safe | Reliable 24x7 ✨\n\nDear Valued Customer, வணக்கம்! 🙏💐\n\nWe sincerely regret to inform you that currently all our professional drivers are engaged on scheduled trips. ⏳\n\nDue to high demand at this moment, we are unable to assign a driver immediately. We truly apologize for this temporary inconvenience.\n\n🔄 We are constantly monitoring availability. As soon as a driver completes their trip, our team will reach out to you if your requirement is still open.\n\nThank you for your kind understanding and support! 🙏✨\n📞 Helpline: 7358366165`;
+      sendWhatsApp(msg);
+    }
+
+    function sendLocationRequest() {
+      const msg = `📍 *ANA CALL DRIVER SERVICE*\n\nதயவுசெய்து உங்கள் தற்போதைய லொகேஷனை (WhatsApp Location Pin) பகிருங்கள்.\n\nஎங்கள் ஓட்டுநர் உங்களை விரைவாக வந்தடைய இது உதவியாக இருக்கும். நன்றி! 🙏`;
       sendWhatsApp(msg);
     }
 
@@ -284,4 +278,3 @@
 
 </body>
 </html>
-
