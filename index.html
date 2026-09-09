@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANA CALL DRIVER SERVICE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>ANA Call Driver Service - Portal</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     body {
-      background-color: #f1f5f9;
+      background-color: #f4f6fa;
       display: flex;
       justify-content: center;
-      padding: 14px;
+      padding: 15px;
     }
     .container {
       width: 100%;
-      max-width: 440px;
+      max-width: 450px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 15px;
     }
     .header-card {
-      background: linear-gradient(135deg, #0b1329 0%, #1e293b 100%);
-      color: #ffffff;
+      background: linear-gradient(135deg, #101c38, #0a1024);
+      color: white;
       padding: 20px;
       border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-      border: 1px solid #334155;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
     }
     .badge {
       display: inline-block;
@@ -39,67 +38,72 @@
       color: #000;
       font-size: 11px;
       font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      margin-bottom: 8px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
     }
-    .header-title {
-      font-size: 21px;
+    .title {
+      font-size: 20px;
       font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       letter-spacing: 0.5px;
+      margin-bottom: 6px;
     }
-    .header-subtitle {
+    .subtitle {
       font-size: 12px;
       color: #94a3b8;
-      margin-top: 4px;
     }
-    .banner-note {
-      background: #eff6ff;
-      border-left: 4px solid #2563eb;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 14px;
-      font-size: 12px;
-      color: #1e40af;
-      line-height: 1.5;
-    }
-    .card {
-      background-color: #ffffff;
-      padding: 16px;
+    .input-card {
+      background: white;
+      padding: 16px 20px;
       border-radius: 18px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
-    .card-title {
-      font-size: 12px;
+    .input-label {
+      font-size: 11px;
       font-weight: 700;
       color: #475569;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: block;
     }
     .input-box {
       width: 100%;
-      padding: 14px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
+      padding: 12px 15px;
       font-size: 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
       outline: none;
-      transition: border-color 0.2s;
+      font-weight: 600;
+      color: #1e293b;
     }
     .input-box:focus {
-      border-color: #2563eb;
+      border-color: #0d9488;
     }
-    .hint {
+    .input-hint {
       font-size: 11px;
-      color: #64748b;
+      color: #94a3b8;
       margin-top: 5px;
-      display: block;
+    }
+    .section-card {
+      background: white;
+      padding: 18px 20px;
+      border-radius: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .btn-grid {
       display: grid;
@@ -107,174 +111,242 @@
       gap: 10px;
     }
     .btn {
+      padding: 14px 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 14px 10px;
-      border-radius: 12px;
-      color: white;
-      font-size: 13px;
-      font-weight: 700;
       text-decoration: none;
+      transition: all 0.2s ease;
       text-align: center;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.1s, opacity 0.2s;
     }
     .btn:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
     }
     .btn-teal {
-      background-color: #0d9488;
+      background-color: #0f766e;
+      color: white;
     }
-    .btn-light {
-      background-color: #f8fafc;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
+    .btn-outline {
+      background-color: #ffffff;
+      color: #334155;
+      border: 1.5px solid #e2e8f0;
     }
     .btn-purple {
       background-color: #7c3aed;
+      color: white;
+      width: 100%;
+      font-size: 13px;
+      padding: 16px 12px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
     }
-    .btn-danger {
+    .btn-red {
       background-color: #b91c1c;
+      color: white;
+      width: 100%;
+      font-size: 13px;
+      padding: 15px 12px;
     }
-    .safety-list {
+    .rules-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-bottom: 12px;
-    }
-    .safety-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
       font-size: 12px;
       color: #334155;
-      line-height: 1.4;
+      line-height: 1.5;
     }
-    .safety-warning {
-      background: #fef2f2;
-      border: 1px dashed #ef4444;
-      padding: 10px;
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .alert-box {
+      background-color: #fff1f2;
+      border: 1px dashed #f43f5e;
+      padding: 10px 12px;
       border-radius: 10px;
       font-size: 11px;
-      color: #991b1b;
+      color: #9f1239;
       line-height: 1.4;
-      margin-bottom: 12px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
-    <!-- Top Header Card -->
+
+    <!-- Header Card -->
     <div class="header-card">
-      <span class="badge">⭐ 5.0 RATED SERVICE</span>
-      <div class="header-title">🚗 ANA CALL DRIVER SERVICE</div>
-      <div class="header-subtitle">Govt Approved • Safe • Reliable 24x7</div>
-      <div class="banner-note">
-        💡 <strong>சரியான பயணக் கட்டணம்:</strong> முன்கூட்டியே கட்டணத்தைத் துல்லியமாகக் கணக்கிட்டு புக் செய்ய எங்கள் ஆன்லைன் புக்கிங் ஃபார்மைப் பயன்படுத்தவும்!
-      </div>
+      <div class="badge">⭐ 5.0 RATED SERVICE</div>
+      <div class="title">🚗 ANA CALL DRIVER SERVICE</div>
+      <div class="subtitle">Govt Approved • Safe • Reliable 24x7</div>
     </div>
 
-    <!-- Phone Number Input -->
-    <div class="card">
-      <label class="card-title" for="phoneInput">Customer / Driver WhatsApp Number</label>
-      <input type="tel" id="phoneInput" class="input-box" placeholder="9876543210">
-      <span class="hint">Enter 10-digit number or +91XXXXXXXXXX</span>
+    <!-- WhatsApp Number Input Card -->
+    <div class="input-card">
+      <label class="input-label">CUSTOMER / DRIVER WHATSAPP NUMBER</label>
+      <input type="tel" id="mobileNumber" class="input-box" placeholder="Enter 10-digit number" value="7358366165">
+      <div class="input-hint">Enter 10-digit number or +91XXXXXXXXXX</div>
     </div>
 
-    <!-- Customer Messages -->
-    <div class="card">
-      <div class="card-title">💬 CUSTOMER MESSAGES</div>
+    <!-- Customer Messages Section -->
+    <div class="section-card">
+      <div class="section-title">💬 CUSTOMER MESSAGES</div>
+      
       <div class="btn-grid">
         <button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
         <button class="btn btn-teal" onclick="sendTariff()">💰 TARIFF</button>
-        <button class="btn btn-light" onclick="sendNoDriver()">🚫 NO DRIVER</button>
-        <button class="btn btn-light" onclick="sendLocationRequest()">📍 SEND LOCATION</button>
+      </div>
+
+      <div class="btn-grid">
+        <button class="btn btn-outline" onclick="sendNoDriver()">🚫 NO DRIVER</button>
+        <button class="btn btn-outline" onclick="sendLocation()">📍 SEND LOCATION</button>
       </div>
     </div>
 
-    <!-- Driver Management Section -->
-    <div class="card">
-      <div class="card-title">🚗 DRIVER ONBOARDING & MESSAGES</div>
-      <button class="btn btn-purple" style="width: 100%;" onclick="sendDriverJoiningInvite()">
-        📲 SEND DRIVER JOINING FORM (WHATSAPP)
-      </button>
+    <!-- Driver Onboarding Section -->
+    <div class="section-card">
+      <div class="section-title">🚗 DRIVER ONBOARDING & MESSAGES</div>
+      <button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (WHATSAPP)</button>
     </div>
 
-    <!-- Customer Safety Rules Card -->
-    <div class="card">
-      <div class="card-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
-      <div class="safety-list">
-        <div class="safety-item"><span>🥇</span><span><strong>Experienced Drivers Only:</strong> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</span></div>
-        <div class="safety-item"><span>📜</span><span><strong>License Verified:</strong> உரிமம் முழுமையாக சரிபார்க்கப்படுகிறது.</span></div>
-        <div class="safety-item"><span>🔒</span><span><strong>Verified Records:</strong> அடையாள ஆவணங்கள் சரிபார்க்கப்பட்டு பாதுகாக்கப்படுகின்றன.</span></div>
-        <div class="safety-item"><span>🚫</span><span><strong>Strict Discipline:</strong> குறைபாடுகள் இருந்தால் உடனடி பணிநீக்கம்.</span></div>
-        <div class="safety-item"><span>📹</span><span><strong>Live Confirmation:</strong> நேரலையில் சரியான டிரைவர் உறுதி செய்யப்படுகிறார்.</span></div>
+    <!-- Safety & Rules Section -->
+    <div class="section-card">
+      <div class="section-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
+
+      <div class="rules-list">
+        <div class="rule-item">🎖️ <b>Experienced Drivers Only:</b> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</div>
+        <div class="rule-item">📜 <b>License Verified:</b> உரிமம் முழுமையாக சரிபார்க்கப்படுகிறது.</div>
+        <div class="rule-item">🔒 <b>Verified Records:</b> அடையாள ஆவணங்கள் பாதுகாக்கப்படுகின்றன.</div>
+        <div class="rule-item">⏱️ <b>Transparent Meter:</b> ஓடும் தூரம் (KM) மற்றும் நேரம் (Time) துல்லியக் கணக்கீடு.</div>
+        <div class="rule-item">📹 <b>Live Confirmation:</b> நேரலையில் சரியான டிரைவர் உறுதி செய்யப்படுகிறார்.</div>
       </div>
-      <div class="safety-warning">
-        ⚠️ <strong>முக்கிய அறிவிப்பு:</strong> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
+
+      <div class="alert-box">
+        ⚠️ <b>முக்கிய அறிவிப்பு:</b> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
       </div>
-      <button class="btn btn-danger" style="width: 100%;" onclick="sendSafetyRules()">
-        📲 SEND SAFETY RULES VIA WHATSAPP
-      </button>
+
+      <button class="btn btn-red" onclick="sendSafetyRules()">📲 SEND SAFETY RULES VIA WHATSAPP</button>
     </div>
 
   </div>
 
   <script>
-    const customerBookingUrl = "https://script.google.com/macros/s/AKfycbwH6qA5AveiOPqw6qBvhvcUTnxXnaJ7S2ukayXlOvuENOZ_ec3BE0Vr_zonn7Mt4qkDmQ/exec";
-    const driverFormUrl = "https://tally.so/r/A7eoky";
-
-    function getFormattedPhone() {
-      let phone = document.getElementById('phoneInput').value.trim().replace(/[^0-9+]/g, '');
-      if (!phone) {
-        alert('தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!');
-        return null;
+    function getCleanNumber() {
+      let num = document.getElementById("mobileNumber").value.trim();
+      num = num.replace(/[^0-9]/g, '');
+      if (num.length === 10) {
+        num = '91' + num;
       }
-      if (phone.length === 10) phone = '91' + phone;
-      return phone.replace('+', '');
+      return num;
     }
 
-    function sendWhatsApp(text) {
-      const phone = getFormattedPhone();
-      if (!phone) return;
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+    function openWhatsApp(message) {
+      const phone = getCleanNumber();
+      if (!phone) {
+        alert("தயவுசெய்து சரியான மொபைல் எண்ணை உள்ளிடவும்!");
+        return;
+      }
+      const encodedMsg = encodeURIComponent(message);
+      const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`;
+      window.open(url, '_blank');
     }
 
+    // 1. WELCOME MESSAGE (Meter + Time based)
     function sendWelcome() {
-      const msg = `⚡ WELCOME TO *ANA CALL DRIVER SERVICE* ⚡\n⚡ Premium | Safe | Reliable ⚡\n\nThank you for contacting us! 🙏 We are ready to drive you safely! 🚗💨\n\n👑 WHY WE ARE THE BEST? 👑\n🥇 Government Approved Service (100% Legal & Safe) 📜\n⭐ 120+ Satisfied Google Customers (5-Star Rated) ⭐⭐⭐⭐⭐\n📍 Service Available: City Local, Outstation Trips & Drops! 🗺️\n\n💡 *முன்கூட்டியே துல்லியமான பயணக் கட்டணத்தை அறிந்து உடனே புக் செய்ய:*\n👉 *Book Online:* ${customerBookingUrl}\n\n📞 Direct Call / WhatsApp: 7358366165 📱\n✨ Relax & Enjoy Your Ride... We Will Drive! ✨`;
-      sendWhatsApp(msg);
+      const msg = `⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡
+✨ _Safe | Reliable | 100% Professional_ ✨
+
+Thank you for contacting us! 🙏 We are always ready to drive you safely! 🚗💨
+
+🏆 *FIRST TIME IN TAMIL NADU: DIGITAL METER BILLING!* ⏱️🚘
+No hidden charges! Your fare is calculated transparently based strictly on *Actual Distance (KM) + Trip Duration (Time)*.
+
+📸 *How It Works (100% Transparent):*
+🟢 *Trip Start:* Driver takes a photo of your Car Dashboard / Speedometer (Start KM & Time) ⏱️📸
+🔴 *Trip End:* Driver captures the final Speedometer reading (End KM & Time) 🏁📸
+🧾 *Accurate Fair Bill:* Your exact fare is calculated automatically based on total Kilometers driven & Total Hours spent! 💯
+
+⭐ *Why Choose ANA Call Drivers?*
+📜 Govt Approved & 100% Police Verified Drivers
+⭐ 5-Star Rated Customer Experience
+📍 Local City Rides, Round Trips & Outstation Drops
+
+✨ _Relax & Enjoy Your Ride... We Will Drive!_ ✨`;
+      openWhatsApp(msg);
     }
 
+    // 2. TARIFF MESSAGE
     function sendTariff() {
-      const msg = `💰 *ANA CALL DRIVER SERVICE - கட்டண விவரங்கள்*\n\nஎங்கள் சேவைக் கட்டணங்கள் மிகக் குறைவானவை & வெளிப்படையானவை.\n\n📍 உங்கள் பயணத் தூரத்திற்கான சரியான கட்டணத்தை உடனே கணக்கிட:\n👉 ${customerBookingUrl}\n\n📞 தொடர்பு எண்: 7358366165`;
-      sendWhatsApp(msg);
+      const msg = `💰 *ANA CALL DRIVER SERVICE - TARIFF DETAILS* 💰
+
+🚗 *Transparent Meter & Time Billing System:*
+* Fair charges calculated purely on Kilometers + Duration!
+* No sudden extra charges or hidden costs.
+
+📞 Kindly share your pickup location, drop, and travel time to get instant fare estimation!`;
+      openWhatsApp(msg);
     }
 
+    // 3. NO DRIVER MESSAGE
     function sendNoDriver() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE* 🚗\n✨ Premium | Safe | Reliable 24x7 ✨\n\nDear Valued Customer, வணக்கம்! 🙏💐\n\nWe sincerely regret to inform you that currently all our professional drivers are engaged on scheduled trips. ⏳\n\nDue to high demand at this moment, we are unable to assign a driver immediately. We truly apologize for this temporary inconvenience.\n\n🔄 We are constantly monitoring availability. As soon as a driver completes their trip, our team will reach out to you if your requirement is still open.\n\nThank you for your kind understanding and support! 🙏✨\n📞 Helpline: 7358366165`;
-      sendWhatsApp(msg);
+      const msg = `🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE* 🚫
+
+Dear Customer, currently all our professional drivers are assigned to ongoing trips in your area. 🚗💨
+
+We will notify you immediately once a driver becomes available. We sincerely apologize for the inconvenience! 🙏`;
+      openWhatsApp(msg);
     }
 
-    function sendLocationRequest() {
-      const msg = `📍 *ANA CALL DRIVER SERVICE*\n\nதயவுசெய்து உங்கள் தற்போதைய லொகேஷனை (WhatsApp Location Pin) பகிருங்கள்.\n\nஎங்கள் ஓட்டுநர் உங்களை விரைவாக வந்தடைய இது உதவியாக இருக்கும். நன்றி! 🙏`;
-      sendWhatsApp(msg);
+    // 4. SEND LOCATION MESSAGE
+    function sendLocation() {
+      const msg = `📍 *ANA CALL DRIVER SERVICE* 📍
+
+Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsApp so our assigned driver can reach your location promptly! 🚗🗺️`;
+      openWhatsApp(msg);
     }
 
+    // 5. DRIVER JOINING FORM MESSAGE
+    function sendDriverForm() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗
+
+வணக்கம்! எங்கள் ANA Call Driver நிறுவனத்தில் இணைந்து பணிபுரிய விரும்பும் ஓட்டுநர்கள் கீழே உள்ள விவரங்களைச் சமர்ப்பிக்கவும்:
+
+1. ஓட்டுநர் உரிமம் (Driving License)
+2. ஆதார் அட்டை (Aadhaar Card)
+3. தற்போதைய புகைப்படம் (Photo)
+
+விவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு தொடங்கப்படும். நன்றி!`;
+      openWhatsApp(msg);
+    }
+
+    // 6. CUSTOMER SAFETY & RULES (Updated with Meter info)
     function sendSafetyRules() {
-      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️\n\nவணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐\n\n✅ 1. Experienced Drivers Only\n✅ 2. License Verified\n✅ 3. Verified Records Protected\n✅ 4. Zero Tolerance Policy\n✅ 5. Live Driver Verification\n\n⚠️ *முக்கிய அறிவிப்பு:* ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.\n📞 தொடர்பு எண்: 7358366165`;
-      sendWhatsApp(msg);
-    }
+      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️
 
-    function sendDriverJoiningInvite() {
-      const msg = `🚗 *வணக்கம்! ANA CALL DRIVER SERVICE-ல் இணைய தங்களை வரவேற்கிறோம்.* 🚗\n\nஎங்களுடன் இணைந்து ஓட்டுநராகப் பணிபுரிய கீழே உள்ள விண்ணப்பப் படிவத்தைப் பூர்த்தி செய்து, தேவையான ஆவணங்களை அப்லோட் செய்யவும்:\n\n👉 *Driver Registration Form:* ${driverFormUrl}\n\nவிவரங்களைச் சரிபார்த்துவிட்டு அலுவலகத்திலிருந்து உங்களை உடனே தொடர்புகொள்வோம்! 🤝\n📞 உதவிக்கு: 7358366165`;
-      sendWhatsApp(msg);
+வணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐
+
+✅ 1. Experienced Drivers Only
+✅ 2. License Verified
+✅ 3. Verified Records Protected
+✅ 4. Zero Tolerance Policy
+✅ 5. Live Driver Verification
+
+🚗 *Meter & Fare Guidelines:*
+⏱️ Our billing is completely transparent, based on Digital Odometer (KM + Time) tracking.
+📸 Drivers will capture dashboard readings at both start and end points for accurate billing.
+
+⚠️ *முக்கிய அறிவிப்பு:* 
+ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
+📞 தொடர்பு எண்: 7358366165`;
+      openWhatsApp(msg);
     }
   </script>
-
 </body>
 </html>
