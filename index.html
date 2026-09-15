@@ -176,7 +176,7 @@
       font-weight: 600;
     }
 
-    /* 🌟 TARIFF POP-UP MODAL STYLES 🌟 */
+    /* 🌟 TARIFF MODAL POP-UP STYLES 🌟 */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -195,29 +195,22 @@
       background: #ffffff;
       width: 100%;
       max-width: 420px;
-      max-height: 90vh;
-      overflow-y: auto;
       border-radius: 20px;
-      padding: 20px;
+      padding: 18px;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      animation: popIn 0.25s ease-out;
-    }
-    @keyframes popIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      gap: 10px;
     }
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1.5px solid #f1f5f9;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
     .modal-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: #0f172a;
     }
@@ -227,8 +220,8 @@
       font-size: 18px;
       font-weight: bold;
       color: #475569;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -239,19 +232,18 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      margin-top: 4px;
     }
     .tariff-table th {
       background: #0f766e;
       color: white;
-      padding: 8px 10px;
+      padding: 7px 10px;
       text-align: left;
       font-weight: 700;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     }
     .tariff-table td {
-      padding: 8px 10px;
+      padding: 7px 10px;
       border-bottom: 1px solid #e2e8f0;
       color: #1e293b;
       font-weight: 600;
@@ -268,20 +260,23 @@
     .mini-box {
       background: #f0fdfa;
       border: 1px solid #ccfbf1;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 8px;
+      padding: 8px 10px;
       font-size: 11px;
       color: #115e59;
-      line-height: 1.6;
+      line-height: 1.5;
     }
     .btn-whatsapp-share {
       background-color: #22c55e;
       color: white;
       width: 100%;
-      font-size: 14px;
-      padding: 14px;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 12px;
       box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-      margin-top: 4px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -309,7 +304,6 @@
       
       <div class="btn-grid">
         <button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
-        <!-- TARIFF பட்டன் பாப்-அப் கார்டைத் திறக்கும் -->
         <button class="btn btn-teal" onclick="openTariffModal()">💰 TARIFF</button>
       </div>
 
@@ -355,7 +349,6 @@
         <button class="close-btn" onclick="closeTariffModal()">✕</button>
       </div>
 
-      <!-- நேர்த்தியான டேபிள் பாக்ஸ் -->
       <table class="tariff-table">
         <thead>
           <tr>
@@ -398,23 +391,18 @@
         </tbody>
       </table>
 
-      <!-- 3 படி பாதுகாப்பு கார்டு -->
       <div class="mini-box">
-        <b>🛡️ 100% டிஜிட்டல் மீட்டர் பாதுகாப்பு:</b><br>
+        <b>🛡️ 3 படி பாதுகாப்பு நடைமுறை:</b><br>
         1️⃣ <b>வருகை:</b> பிக்கப் ஸ்பாட் வந்து டிரைவர் 'Arrived' பதிவு.<br>
-        2️⃣ <b>OTP:</b> காரில் ஏறி நீங்கள் OTP கொடுத்த பிறகே மீட்டர் தொடங்கும்.<br>
-        3️⃣ <b>பில்:</b> நீங்கள் பயன்படுத்திய தூரம் & நேரத்திற்கு மட்டுமே துல்லிய பில்!
+        2️⃣ <b>OTP & KM:</b> காரில் ஏறி OTP கூறிய பின்பே மீட்டரும் பயண KM-ம் தொடங்கும்.<br>
+        3️⃣ <b>கணினி பில்:</b> பயன்பாட்டுத் தூரம் & நேரத்திற்கு மட்டுமே சரியான பில்!
       </div>
 
-      <!-- சிறப்பு சலுகைகள் கார்டு -->
       <div class="mini-box" style="background: #fffbeb; border-color: #fef3c7; color: #92400e;">
-        ⏳ <b>20 நிமிடம் இலவச சலுகை நேரம் (Grace Period)!</b><br>
-        ⏱️ கூடுதல் நேரம்: பேக்கேஜிற்குப் பின் வெறும் <b>₹100/மணி</b> மட்டுமே.<br>
-        🌙 இரவு கட்டணம் (10:15 PM - 5:15 AM): <b>₹100</b>
+        ⏳ 20 நிமிடம் இலவச சலுகை நேரம்! | கூடுதல் நேரம்: ₹100/மணி | 🌙 இரவு: ₹100
       </div>
 
-      <!-- கீழே உள்ள WhatsApp Share Button -->
-      <button class="btn btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE ON WHATSAPP</button>
+      <button class="btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE ON WHATSAPP</button>
 
     </div>
   </div>
@@ -440,7 +428,6 @@
       window.open(url, '_blank');
     }
 
-    // 🌟 TARIFF MODAL FUNCTIONS
     function openTariffModal() {
       document.getElementById("tariffModal").style.display = "flex";
     }
@@ -455,64 +442,50 @@
       }
     }
 
-    // 🌟 SHARE ON WHATSAPP (சுருக்கமான, விரலால் தள்ளத் தேவையில்லாத மைக்ரோ-கார்டு மெசேஜ்)
+    // 🌟 3 படி விளக்கத்துடன் கூடிய நேர்த்தியான வாட்ஸ்அப் மெசேஜ்
     function shareTariffToWhatsApp() {
-      const msg = `╔══════════════════════════╗
-  🚗 ANA CALL DRIVER SERVICE 🚗
-╚══════════════════════════╝
-🔒 *100% டிஜிட்டல் மீட்டர் பில்லிங்*
-_(மறைமுகக் கட்டணங்கள் இல்லை • நியாயமான பில்)_
+      const msg = `> 🚗 *ANA CALL DRIVER SERVICE* 🚗\n` +
+                  `> 🔒 *100% நேர்மையான டிஜிட்டல் மீட்டர் முறை*\n` +
+                  `> ━━━━━━━━━━━━━━━━━━━━\n` +
+                  `> 📊 *கட்டண விபரம் (Up & Down KM):*\n` +
+                  `> ▫️ லோக்கல் (80 KM / 4 மணி) ➔ *₹550*\n` +
+                  `> ▫️ கார் டிராப் (4 மணி வரை) ➔ *₹700*\n` +
+                  `> ▫️ நகருக்கு வெளியே (140 KM) ➔ *₹650*\n` +
+                  `> ▫️ 8 மணி பேக்கேஜ் (180 KM) ➔ *₹1,100*\n` +
+                  `> ▫️ 10 மணி பேக்கேஜ் (220 KM) ➔ *₹1,300*\n` +
+                  `> ▫️ அவுட்ஸ்டேஷன் (220 KM+) ➔ *₹1,600*\n` +
+                  `> ━━━━━━━━━━━━━━━━━━━━\n` +
+                  `> 🛡️ *எளிய 3 படி பாதுகாப்பு நடைமுறை:*\n` +
+                  `> 1️⃣ *வருகை பதிவு:* பிக்கப் ஸ்பாட் வந்து டிரைவர் 'Arrived' கொடுத்ததும் புக் செய்த நேரக் கணக்கு தொடங்கும்.\n` +
+                  `> 2️⃣ *OTP & மீட்டர்:* நீங்கள் காரில் ஏறி OTP கொடுத்த பின்பே ஆரம்ப மீட்டரும் கிலோமீட்டரும் தொடங்கும்.\n` +
+                  `> 3️⃣ *நேர்மையான பில்:* முடிவு மீட்டரைப் படம் எடுத்து தூரம் & நேரத்திற்கு மட்டுமே கணினி பில் வரும்.\n` +
+                  `> ━━━━━━━━━━━━━━━━━━━━\n` +
+                  `> 🎁 *20 நிமிடம் இலவச சலுகை நேரம்!*\n` +
+                  `> ⏱️ கூடுதல் நேரம்: ₹100/மணி | 🌙 இரவு: ₹100\n` +
+                  `> 📞 *24/7 உதவி & முன்பதிவு:* 7358366165`;
 
-┌──────────────────────────┐
-│ 📊 *கட்டண விபரம் (Up & Down KM)*  │
-├──────────────────────────┤
-│ • லோக்கல் (80 KM / 4 மணி) : ₹550
-│ • கார் டிராப் (4 மணி வரை)  : ₹700
-│ • நகருக்கு வெளியே (140 KM): ₹650
-│ • 8 மணி பேக்கேஜ் (180 KM) : ₹1100
-│ • 10 மணி பேக்கேஜ் (220 KM): ₹1300
-│ • அவுட்ஸ்டேஷன் (12 மணி)    : ₹1600
-└──────────────────────────┘
-┌──────────────────────────┐
-│ 🛡️ *எளிய 3 படி பாதுகாப்பு முறை:*     │
-├──────────────────────────┤
-│ 1️⃣ பிக்கப் ஸ்பாட் ➔ டிரைவர் வருகை
-│ 2️⃣ கார் ஏறியதும் ➔ உங்கள் OTP & மீட்டர்
-│ 3️⃣ முடிவில் ➔ தூரம் & நேரத்திற்கு மட்டும் பில்
-└──────────────────────────┘
-🎁 *20 நிமிடம் இலவச சலுகை நேரம்!*
-⏱️ கூடுதல் நேரம்: ₹100/மணி | 🌙 இரவு: ₹100
-
-📞 *24/7 முன்பதிவு:* 7358366165`;
       openWhatsApp(msg);
       closeTariffModal();
     }
 
-    // 1. WELCOME MESSAGE (Meter + Time based)
     function sendWelcome() {
       const msg = `⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡
 ✨ _Safe | Reliable | 100% Professional_ ✨
 
 Thank you for contacting us! 🙏 We are always ready to drive you safely! 🚗💨
 
-🏆 *FIRST TIME IN TAMIL NADU: DIGITAL METER BILLING!* ⏱️🚘
-No hidden charges! Your fare is calculated transparently based strictly on *Actual Distance (KM) + Trip Duration (Time)*.
+🏆 *DIGITAL METER BILLING!* ⏱️🚘
+No hidden charges! Purely based on *Actual KM + Duration*.
 
-📸 *How It Works (100% Transparent):*
-🟢 *Trip Start:* Driver takes a photo of your Car Dashboard / Speedometer (Start KM & Time) ⏱️📸
-🔴 *Trip End:* Driver captures the final Speedometer reading (End KM & Time) 🏁📸
-🧾 *Accurate Fair Bill:* Your exact fare is calculated automatically based on total Kilometers driven & Total Hours spent! 💯
+🟢 *Trip Start:* Start KM & Time Photo
+🔴 *Trip End:* Final Speedometer Reading
+🧾 *Fair Bill:* Exact bill generated automatically! 💯
 
-⭐ *Why Choose ANA Call Drivers?*
-📜 Govt Approved & 100% Police Verified Drivers
-⭐ 5-Star Rated Customer Experience
-📍 Local City Rides, Round Trips & Outstation Drops
-
-✨ _Relax & Enjoy Your Ride... We Will Drive!_ ✨`;
+⭐ 100% Police Verified Drivers | 5-Star Service
+📞 24/7 Helpline: 7358366165`;
       openWhatsApp(msg);
     }
 
-    // 3. NO DRIVER MESSAGE
     function sendNoDriver() {
       const msg = `🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE* 🚫
 
@@ -522,7 +495,6 @@ We will notify you immediately once a driver becomes available. We sincerely apo
       openWhatsApp(msg);
     }
 
-    // 4. SEND LOCATION MESSAGE
     function sendLocation() {
       const msg = `📍 *ANA CALL DRIVER SERVICE* 📍
 
@@ -530,21 +502,19 @@ Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsA
       openWhatsApp(msg);
     }
 
-    // 5. DRIVER JOINING FORM MESSAGE
     function sendDriverForm() {
       const msg = `🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗
 
-வணக்கம்! எங்கள் ANA Call Driver நிறுவனத்தில் இணைந்து பணிபுரிய விரும்பும் ஓட்டுநர்கள் கீழே உள்ள விவரங்களைச் சமர்ப்பிக்கவும்:
+வணக்கம்! எங்கள் நிறுவனத்தில் இணைய விரும்பும் ஓட்டுநர்கள் கீழே உள்ள விவரங்களைச் சமர்ப்பிக்கவும்:
 
 1. ஓட்டுநர் உரிமம் (Driving License)
 2. அரசு அடையாள அட்டை
 3. தற்போதைய புகைப்படம் (Photo)
 
-விவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு தொடங்கப்படும். நன்றி!`;
+விவரங்களைச் சரிபார்த்து கணக்கு தொடங்கப்படும். நன்றி!`;
       openWhatsApp(msg);
     }
 
-    // 6. CUSTOMER SAFETY & RULES (Updated with Meter info)
     function sendSafetyRules() {
       const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️
 
@@ -555,10 +525,6 @@ Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsA
 ✅ 3. Verified Records Protected
 ✅ 4. Zero Tolerance Policy
 ✅ 5. Live Driver Verification
-
-🚗 *Meter & Fare Guidelines:*
-⏱️ Our billing is completely transparent, based on Digital Odometer (KM + Time) tracking.
-📸 Drivers will capture dashboard readings at both start and end points for accurate billing.
 
 ⚠️ *முக்கிய அறிவிப்பு:* 
 ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
