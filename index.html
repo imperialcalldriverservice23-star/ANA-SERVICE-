@@ -175,6 +175,114 @@
       line-height: 1.4;
       font-weight: 600;
     }
+
+    /* 🌟 TARIFF POP-UP MODAL STYLES 🌟 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: popIn 0.25s ease-out;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .close-btn {
+      background: #f1f5f9;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #475569;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tariff-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .tariff-table th {
+      background: #0f766e;
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 700;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .tariff-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
+      font-weight: 600;
+    }
+    .tariff-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    .fare-highlight {
+      color: #0f766e;
+      font-weight: 800;
+      font-size: 13px;
+      text-align: right;
+    }
+    .mini-box {
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #115e59;
+      line-height: 1.6;
+    }
+    .btn-whatsapp-share {
+      background-color: #22c55e;
+      color: white;
+      width: 100%;
+      font-size: 14px;
+      padding: 14px;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      margin-top: 4px;
+    }
   </style>
 </head>
 <body>
@@ -201,7 +309,8 @@
       
       <div class="btn-grid">
         <button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
-        <button class="btn btn-teal" onclick="sendTariff()">💰 TARIFF</button>
+        <!-- TARIFF பட்டன் பாப்-அப் கார்டைத் திறக்கும் -->
+        <button class="btn btn-teal" onclick="openTariffModal()">💰 TARIFF</button>
       </div>
 
       <div class="btn-grid">
@@ -237,6 +346,79 @@
 
   </div>
 
+  <!-- 🌟 TARIFF MODAL POP-UP CARD 🌟 -->
+  <div class="modal-overlay" id="tariffModal" onclick="closeTariffModalOnOutside(event)">
+    <div class="modal-card">
+      
+      <div class="modal-header">
+        <div class="modal-title">📊 கட்டண விபரம் (Tariff Chart)</div>
+        <button class="close-btn" onclick="closeTariffModal()">✕</button>
+      </div>
+
+      <!-- நேர்த்தியான டேபிள் பாக்ஸ் -->
+      <table class="tariff-table">
+        <thead>
+          <tr>
+            <th>பயண வகை (Up & Down)</th>
+            <th>நேரம்</th>
+            <th style="text-align: right;">கட்டணம்</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>• லோக்கல் (80 KM வரை)</td>
+            <td>4 மணி</td>
+            <td class="fare-highlight">₹550</td>
+          </tr>
+          <tr>
+            <td>• லோக்கல் கார் டிராப்</td>
+            <td>4 மணி</td>
+            <td class="fare-highlight">₹700</td>
+          </tr>
+          <tr>
+            <td>• நகருக்கு வெளியே (140 KM)</td>
+            <td>4 மணி</td>
+            <td class="fare-highlight">₹650</td>
+          </tr>
+          <tr>
+            <td>• 8 மணி பேக்கேஜ் (180 KM)</td>
+            <td>8 மணி</td>
+            <td class="fare-highlight">₹1,100</td>
+          </tr>
+          <tr>
+            <td>• 10 மணி பேக்கேஜ் (220 KM)</td>
+            <td>10 மணி</td>
+            <td class="fare-highlight">₹1,300</td>
+          </tr>
+          <tr>
+            <td>• அவுட்ஸ்டேஷன் (220 KM+)</td>
+            <td>12 மணி</td>
+            <td class="fare-highlight">₹1,600</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 3 படி பாதுகாப்பு கார்டு -->
+      <div class="mini-box">
+        <b>🛡️ 100% டிஜிட்டல் மீட்டர் பாதுகாப்பு:</b><br>
+        1️⃣ <b>வருகை:</b> பிக்கப் ஸ்பாட் வந்து டிரைவர் 'Arrived' பதிவு.<br>
+        2️⃣ <b>OTP:</b> காரில் ஏறி நீங்கள் OTP கொடுத்த பிறகே மீட்டர் தொடங்கும்.<br>
+        3️⃣ <b>பில்:</b> நீங்கள் பயன்படுத்திய தூரம் & நேரத்திற்கு மட்டுமே துல்லிய பில்!
+      </div>
+
+      <!-- சிறப்பு சலுகைகள் கார்டு -->
+      <div class="mini-box" style="background: #fffbeb; border-color: #fef3c7; color: #92400e;">
+        ⏳ <b>20 நிமிடம் இலவச சலுகை நேரம் (Grace Period)!</b><br>
+        ⏱️ கூடுதல் நேரம்: பேக்கேஜிற்குப் பின் வெறும் <b>₹100/மணி</b> மட்டுமே.<br>
+        🌙 இரவு கட்டணம் (10:15 PM - 5:15 AM): <b>₹100</b>
+      </div>
+
+      <!-- கீழே உள்ள WhatsApp Share Button -->
+      <button class="btn btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE ON WHATSAPP</button>
+
+    </div>
+  </div>
+
   <script>
     function getCleanNumber() {
       let num = document.getElementById("mobileNumber").value.trim();
@@ -256,6 +438,54 @@
       const encodedMsg = encodeURIComponent(message);
       const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`;
       window.open(url, '_blank');
+    }
+
+    // 🌟 TARIFF MODAL FUNCTIONS
+    function openTariffModal() {
+      document.getElementById("tariffModal").style.display = "flex";
+    }
+
+    function closeTariffModal() {
+      document.getElementById("tariffModal").style.display = "none";
+    }
+
+    function closeTariffModalOnOutside(e) {
+      if (e.target.id === "tariffModal") {
+        closeTariffModal();
+      }
+    }
+
+    // 🌟 SHARE ON WHATSAPP (சுருக்கமான, விரலால் தள்ளத் தேவையில்லாத மைக்ரோ-கார்டு மெசேஜ்)
+    function shareTariffToWhatsApp() {
+      const msg = `╔══════════════════════════╗
+  🚗 ANA CALL DRIVER SERVICE 🚗
+╚══════════════════════════╝
+🔒 *100% டிஜிட்டல் மீட்டர் பில்லிங்*
+_(மறைமுகக் கட்டணங்கள் இல்லை • நியாயமான பில்)_
+
+┌──────────────────────────┐
+│ 📊 *கட்டண விபரம் (Up & Down KM)*  │
+├──────────────────────────┤
+│ • லோக்கல் (80 KM / 4 மணி) : ₹550
+│ • கார் டிராப் (4 மணி வரை)  : ₹700
+│ • நகருக்கு வெளியே (140 KM): ₹650
+│ • 8 மணி பேக்கேஜ் (180 KM) : ₹1100
+│ • 10 மணி பேக்கேஜ் (220 KM): ₹1300
+│ • அவுட்ஸ்டேஷன் (12 மணி)    : ₹1600
+└──────────────────────────┘
+┌──────────────────────────┐
+│ 🛡️ *எளிய 3 படி பாதுகாப்பு முறை:*     │
+├──────────────────────────┤
+│ 1️⃣ பிக்கப் ஸ்பாட் ➔ டிரைவர் வருகை
+│ 2️⃣ கார் ஏறியதும் ➔ உங்கள் OTP & மீட்டர்
+│ 3️⃣ முடிவில் ➔ தூரம் & நேரத்திற்கு மட்டும் பில்
+└──────────────────────────┘
+🎁 *20 நிமிடம் இலவச சலுகை நேரம்!*
+⏱️ கூடுதல் நேரம்: ₹100/மணி | 🌙 இரவு: ₹100
+
+📞 *24/7 முன்பதிவு:* 7358366165`;
+      openWhatsApp(msg);
+      closeTariffModal();
     }
 
     // 1. WELCOME MESSAGE (Meter + Time based)
@@ -279,72 +509,6 @@ No hidden charges! Your fare is calculated transparently based strictly on *Actu
 📍 Local City Rides, Round Trips & Outstation Drops
 
 ✨ _Relax & Enjoy Your Ride... We Will Drive!_ ✨`;
-      openWhatsApp(msg);
-    }
-
-    // 2. TARIFF MESSAGE (விரிவான கட்டணம் & 4 அடுக்கு பாதுகாப்பு நடைமுறை)
-    function sendTariff() {
-      const msg = `╔═════════════════════════╗
-   🚗✨ ANA CALL DRIVER SERVICE ✨🚗
-╚═════════════════════════╝
-
-அன்பார்ந்த வாடிக்கையாளரே, வணக்கம்! 🙏
-
-💡 *டிஜிட்டல் மீட்டர் முறை... யாருக்காக? உங்களுக்காக மட்டுமே!* ⏱️📸
-
-எங்களின் நோக்கம் வாடிக்கையாளர்களிடம் கூடுதல் கட்டணம் வசூலிப்பதல்ல; *சரியான நேரத்திற்கும், சரியான தூரத்திற்கும் மட்டுமே நியாயமான கட்டணத்தைப் பெறுவது!* டிரைவர்கள் தன்னிச்சையாகக் கூடுதல் கட்டணம் கேட்பதைத் தடுத்து, வாடிக்கையாளரின் பணத்தைப் பாதுகாக்கவே இந்த *100% வெளிப்படையான டிஜிட்டல் பில்லிங்* நடைமுறைப்படுத்தப்பட்டுள்ளது. 🛡️
-
-───────────────────────────
-📌 *எங்கள் 4 அடுக்கு பாதுகாப்பு நடைமுறை:*
-───────────────────────────
-
-1️⃣ 📍 *பிக்கப் வருகை பதிவு:*
-டிரைவர் உங்கள் இருப்பிடம் வந்ததும் மொபைல் ஆப்பில் "I Have Arrived" பதிவு செய்வார். நீங்கள் புக் செய்த நேரத்தில் இருந்தே சரியான நேரக் கணக்கீடு தொடங்கும்.
-
-2️⃣ 🔐 *உங்கள் கையில் OTP கட்டுப்பாடு:*
-நீங்கள் காரில் ஏறிய பிறகு, உங்கள் வாட்ஸ்அப்பிற்கு வரும் *4 இலக்க OTP*-யை டிரைவரிடம் கூறினால் மட்டுமே மீட்டர் தொடங்கும்! (டிரைவரால் முன்கூட்டியே மீட்டரைத் தொடங்க முடியாது).
-
-3️⃣ 📸 *மீட்டர் புகைப்படம் & டிரைவர் செல்ஃபி:*
-காரின் தொடக்க கிலோமீட்டர் (Start KM) மற்றும் டிரைவரின் செல்ஃபி உங்கள் கண்முன்னே படம் எடுக்கப்பட்டு பாதுகாப்பாகப் பதிவாகும். இங்கிருந்தே உங்கள் பயண கிலோமீட்டர் தொடங்கும்.
-
-4️⃣ 🏁 *துல்லியமான கணினி பில்:*
-பயணம் முடிவில் முடிவு மீட்டரைப் படம் எடுத்து, நீங்கள் பயன்படுத்திய தூரம் மற்றும் நேரத்திற்கு மட்டுமே துல்லியமான டிஜிட்டல் பில் உருவாக்கப்படும்!
-
-───────────────────────────
-📊 *எங்களின் வெளிப்படையான கட்டண விபரம் (Up & Down KM):*
-───────────────────────────
-
-🚗 *லோக்கல் பயணம் (80 KM வரை)*
-⏱️ 4 மணி நேரம் ➔ *₹550*
-
-🚗 *லோக்கல் கார் டிராப் (4 மணி வரை)*
-⏱️ டிராப் சேவை ➔ *₹700*
-
-🚗 *நகருக்கு வெளியே (140 KM வரை)*
-⏱️ 4 மணி நேரம் ➔ *₹650*
-
-🚗 *8 மணி பேக்கேஜ் (180 KM வரை)*
-⏱️ 8 மணி நேரம் ➔ *₹1,100*
-
-🚗 *10 மணி பேக்கேஜ் (220 KM வரை)*
-⏱️ 10 மணி நேரம் ➔ *₹1,300*
-
-🚗 *அவுட்ஸ்டேஷன் (220 KM-க்கு மேல்)*
-⏱️ 12 மணி பேக்கேஜ் ➔ *₹1,600*
-
-───────────────────────────
-🎁 *சிறப்புச் சலுகைகள் & நன்மைகள்:*
-───────────────────────────
-⏳ *20 நிமிடங்கள் இலவச சலுகை நேரம் (Grace Period)!*
-⏱️ கூடுதல் நேரம்: பேக்கேஜிற்குப் பின் வெறும் *₹100 / மணி* மட்டுமே.
-🌙 இரவு நேரக் கட்டணம் (10:15 PM - 5:15 AM): *₹100* மட்டுமே.
-❌ டிரைவரிடம் பேரம் பேசத் தேவையில்லை!
-❌ ஒரு கிலோமீட்டரோ, ஒரு நிமிடமோ கூடுதலாகக் கணக்கிடப்படாது!
-
-> ⭐ *"வெளிப்படையான கணக்கீடு • வாடிக்கையாளரின் நிம்மதியான பயணம்!"*
-
-📞 *24/7 உதவி & முன்பதிவு:* +91 7358366165
-🛣️ *Drive Safe • Professional Drivers Always at Your Service* ⭐`;
       openWhatsApp(msg);
     }
 
