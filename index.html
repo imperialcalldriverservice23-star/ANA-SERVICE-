@@ -68,8 +68,13 @@
       margin-bottom: 8px;
       display: block;
     }
+    .input-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
     .input-box {
-      width: 100%;
+      flex: 1;
       padding: 12px 15px;
       font-size: 16px;
       border: 1.5px solid #e2e8f0;
@@ -80,6 +85,22 @@
     }
     .input-box:focus {
       border-color: #0d9488;
+    }
+    .btn-action {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid #e2e8f0;
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .btn-action:active {
+      transform: scale(0.95);
+      background-color: #e2e8f0;
     }
     .input-hint {
       font-size: 11px;
@@ -176,7 +197,7 @@
       font-weight: 600;
     }
 
-    /* 🌟 TARIFF MODAL POP-UP STYLES 🌟 */
+    /* TARIFF MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -291,11 +312,15 @@
       <div class="subtitle">Govt Approved • Safe • Reliable 24x7</div>
     </div>
 
-    <!-- WhatsApp Number Input Card -->
+    <!-- WhatsApp Number Input Card (இனி இது Blank-ஆக இருக்கும்) -->
     <div class="input-card">
       <label class="input-label">CUSTOMER / DRIVER WHATSAPP NUMBER</label>
-      <input type="tel" id="mobileNumber" class="input-box" placeholder="Enter 10-digit number" value="7358366165">
-      <div class="input-hint">Enter 10-digit number or +91XXXXXXXXXX</div>
+      <div class="input-wrapper">
+        <input type="tel" id="mobileNumber" class="input-box" placeholder="Enter or paste mobile number">
+        <button type="button" class="btn-action" onclick="pasteNumber()">📋 PASTE</button>
+        <button type="button" class="btn-action" onclick="clearNumber()">✕</button>
+      </div>
+      <div class="input-hint">Paste 10-digit number or +91XXXXXXXXXX</div>
     </div>
 
     <!-- Customer Messages Section -->
@@ -340,10 +365,9 @@
 
   </div>
 
-  <!-- 🌟 TARIFF MODAL POP-UP CARD 🌟 -->
+  <!-- TARIFF MODAL -->
   <div class="modal-overlay" id="tariffModal" onclick="closeTariffModalOnOutside(event)">
     <div class="modal-card">
-      
       <div class="modal-header">
         <div class="modal-title">📊 கட்டண விபரம் (Tariff Chart)</div>
         <button class="close-btn" onclick="closeTariffModal()">✕</button>
@@ -403,11 +427,24 @@
       </div>
 
       <button class="btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE ON WHATSAPP</button>
-
     </div>
   </div>
 
   <script>
+    async function pasteNumber() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("mobileNumber").value = text.trim();
+      } catch (err) {
+        alert("எண்ணை நேரடியாக பாக்ஸில் Long Press செய்து Paste செய்யவும்.");
+      }
+    }
+
+    function clearNumber() {
+      document.getElementById("mobileNumber").value = "";
+      document.getElementById("mobileNumber").focus();
+    }
+
     function getCleanNumber() {
       let num = document.getElementById("mobileNumber").value.trim();
       num = num.replace(/[^0-9]/g, '');
@@ -420,7 +457,8 @@
     function openWhatsApp(message) {
       const phone = getCleanNumber();
       if (!phone) {
-        alert("தயவுசெய்து சரியான மொபைல் எண்ணை உள்ளிடவும்!");
+        alert("தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!");
+        document.getElementById("mobileNumber").focus();
         return;
       }
       const encodedMsg = encodeURIComponent(message);
