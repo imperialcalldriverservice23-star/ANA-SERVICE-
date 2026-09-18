@@ -299,18 +299,18 @@
       cursor: pointer;
     }
 
-    /* QR MODAL STYLES */
+    /* QR MODAL */
     .qr-container {
       text-align: center;
-      padding: 10px 0;
+      padding: 8px 0;
     }
     .qr-image {
-      width: 210px;
-      height: 210px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       border-radius: 12px;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background: white;
     }
     .upi-tag {
       font-family: monospace;
@@ -319,7 +319,7 @@
       padding: 6px 10px;
       border-radius: 6px;
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 6px;
       font-weight: 700;
       color: #0f172a;
     }
@@ -472,10 +472,7 @@
       </div>
 
       <div class="qr-container">
-        <!-- SVG format of provided Google Pay QR -->
-        <svg class="qr-image" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
-          <image href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR" width="250" height="250" />
-        </svg>
+        <img id="qrImageElement" class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR" alt="UPI QR Code">
         <br>
         <span class="upi-tag">anacalldriverservice@okhdfcbank</span>
       </div>
@@ -484,7 +481,11 @@
         Scan with <b>Google Pay, PhonePe, Paytm</b> or any UPI App.
       </div>
 
-      <button class="btn-whatsapp-share" onclick="sendPaymentDetails()">📲 SEND UPI DETAILS VIA WHATSAPP</button>
+      <!-- நேட்டிவ் போட்டோ ஷேர் பட்டன் -->
+      <button class="btn-whatsapp-share" onclick="shareQrImageDirectly()">📲 SHARE QR PHOTO TO WHATSAPP</button>
+      
+      <!-- வாட்ஸ்அப் மெசேஜ் பட்டன் (QR Link உடன்) -->
+      <button class="btn btn-outline" style="width: 100%; font-size: 11px; padding: 8px;" onclick="sendPaymentDetails()">💬 SEND UPI TEXT & QR LINK</button>
     </div>
   </div>
 
@@ -543,6 +544,29 @@
     function closeModalOnOutside(e, modalId) {
       if (e.target.id === modalId) {
         document.getElementById(modalId).style.display = "none";
+      }
+    }
+
+    // QR Image-ஐ நேரடியாக ஃபைலாக வாட்ஸ்அப்பில் ஷேர் செய்யும் ஃபங்க்ஷன்
+    async function shareQrImageDirectly() {
+      const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
+      try {
+        const response = await fetch(qrUrl);
+        const blob = await response.blob();
+        const file = new File([blob], "ANA_Call_Driver_QR.png", { type: "image/png" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: 'ANA Call Driver Service - UPI QR Code',
+            text: 'பயணக் கட்டணத்தைச் செலுத்த இந்த QR Code-ஐ ஸ்கேன் செய்யவும்.\nUPI: anacalldriverservice@okhdfcbank'
+          });
+        } else {
+          // போன் சப்போர்ட் செய்யாவிட்டால் மெசேஜாக லிங்க் உடன் செல்லும்
+          sendPaymentDetails();
+        }
+      } catch (error) {
+        sendPaymentDetails();
       }
     }
 
@@ -614,13 +638,17 @@ No hidden charges! Purely based on *Actual KM + Duration*.
     }
 
     function sendPaymentDetails() {
+      const qrLink = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
       const msg = `💳 *ANA CALL DRIVER SERVICE - PAYMENT DETAILS* 📲
 
-பயணக் கட்டணத்தை கீழே உள்ள UPI மூலம் செலுத்தலாம்:
+பயணக் கட்டணத்தை கீழே உள்ள முறையில் செலுத்தலாம்:
 
 📱 *UPI ID:* anacalldriverservice@okhdfcbank
 📞 *GPay / PhonePe Number:* 7358366165
 👤 *Account Name:* ANA Call Driver Service
+
+🖼️ *QR Code மூலம் ஸ்கேன் செய்து செலுத்த இந்த லிங்கைத் தொடவும்:*
+👉 ${qrLink}
 
 பணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
       openWhatsApp(msg);
