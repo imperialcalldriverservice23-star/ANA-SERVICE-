@@ -166,6 +166,14 @@
       padding: 12px 10px;
       box-shadow: 0 3px 10px rgba(124, 58, 237, 0.2);
     }
+    .btn-green {
+      background-color: #16a34a;
+      color: white;
+      width: 100%;
+      font-size: 12px;
+      padding: 12px 10px;
+      box-shadow: 0 3px 10px rgba(22, 163, 74, 0.2);
+    }
     .btn-blue {
       background-color: #0284c7;
       color: white;
@@ -380,12 +388,13 @@
       </div>
     </div>
 
-    <!-- Driver Onboarding Section -->
+    <!-- Driver Onboarding & Registration Section -->
     <div class="section-card">
       <div class="section-title">🚗 DRIVER ONBOARDING & REGISTRATION</div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (TALLY)</button>
-        <button class="btn btn-blue" onclick="sendAnaTelegramGroup()">📲 ANA டெலிகிராம் குரூப் (TELEGRAM)</button>
+        <button class="btn btn-green" onclick="sendAnaWhatsAppGroup()">💬 ANA வாட்ஸ்அப் குரூப் (WHATSAPP)</button>
+        <button class="btn btn-blue" onclick="sendAnaTelegramGroup()">📱 ANA டெலிகிராம் குரூப் (TELEGRAM)</button>
       </div>
     </div>
 
@@ -687,6 +696,17 @@ Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsA
 👉 https://tally.so/r/A7eoky
 
 விவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
+      openWhatsApp(msg);
+    }
+
+    function sendAnaWhatsAppGroup() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUP* 💬
+
+வணக்கம்! ANA வாட்ஸ்அப் குழுவில் இணைவதற்கு இந்த லிங்கைத் தொடர்ந்து ஃபாலோ பண்ணுங்க:
+
+👉 [உங்களது வாட்ஸ்அப் குரூப் லிங்கை இங்கு போடவும்]
+
+குழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
       openWhatsApp(msg);
     }
 
