@@ -166,6 +166,14 @@
       padding: 12px 10px;
       box-shadow: 0 3px 10px rgba(124, 58, 237, 0.2);
     }
+    .btn-blue {
+      background-color: #0284c7;
+      color: white;
+      width: 100%;
+      font-size: 12px;
+      padding: 12px 10px;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.2);
+    }
     .btn-red {
       background-color: #b91c1c;
       color: white;
@@ -374,8 +382,11 @@
 
     <!-- Driver Onboarding Section -->
     <div class="section-card">
-      <div class="section-title">🚗 DRIVER ONBOARDING</div>
-      <button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (TALLY)</button>
+      <div class="section-title">🚗 DRIVER ONBOARDING & REGISTRATION</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (TALLY)</button>
+        <button class="btn btn-blue" onclick="sendAnaTelegramGroup()">📲 ANA டெலிகிராம் குரூப் (TELEGRAM)</button>
+      </div>
     </div>
 
     <!-- Safety & Rules Section -->
@@ -481,10 +492,8 @@
         Scan with <b>Google Pay, PhonePe, Paytm</b> or any UPI App.
       </div>
 
-      <!-- நேட்டிவ் போட்டோ ஷேர் பட்டன் -->
       <button class="btn-whatsapp-share" onclick="shareQrImageDirectly()">📲 SHARE QR PHOTO TO WHATSAPP</button>
       
-      <!-- வாட்ஸ்அப் மெசேஜ் பட்டன் (QR Link உடன்) -->
       <button class="btn btn-outline" style="width: 100%; font-size: 11px; padding: 8px;" onclick="sendPaymentDetails()">💬 SEND UPI TEXT & QR LINK</button>
     </div>
   </div>
@@ -547,7 +556,6 @@
       }
     }
 
-    // QR Image-ஐ நேரடியாக ஃபைலாக வாட்ஸ்அப்பில் ஷேர் செய்யும் ஃபங்க்ஷன்
     async function shareQrImageDirectly() {
       const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
       try {
@@ -562,7 +570,6 @@
             text: 'பயணக் கட்டணத்தைச் செலுத்த இந்த QR Code-ஐ ஸ்கேன் செய்யவும்.\nUPI: anacalldriverservice@okhdfcbank'
           });
         } else {
-          // போன் சப்போர்ட் செய்யாவிட்டால் மெசேஜாக லிங்க் உடன் செல்லும்
           sendPaymentDetails();
         }
       } catch (error) {
@@ -680,6 +687,17 @@ Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsA
 👉 https://tally.so/r/A7eoky
 
 விவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
+      openWhatsApp(msg);
+    }
+
+    function sendAnaTelegramGroup() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - TELEGRAM GROUP* 📱
+
+வணக்கம்! ANA டெலிகிராம் குழுவில் இணைவதற்கு இந்த லிங்கைத் தொடர்ந்து ஃபாலோ பண்ணுங்க:
+
+👉 https://t.me/ANADriverRegisterdbot
+
+டெலிகிராம் பாட் வழிகாட்டுதலின்படி உங்கள் பதிவை முடிக்கலாம். நன்றி! 🙏`;
       openWhatsApp(msg);
     }
 
