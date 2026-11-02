@@ -700,25 +700,30 @@ Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsA
     }
 
     function sendAnaWhatsAppGroup() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUP* 💬
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUPS* 💬
 
-வணக்கம்! ANA வாட்ஸ்அப் குழுவில் இணைவதற்கு இந்த லிங்கைத் தொடர்ந்து ஃபாலோ பண்ணுங்க:
+வணக்கம்! ANA வாட்ஸ்அப் குழுக்களில் இணைவதற்கும் மற்றும் நம்பர் பதிவு செய்வதற்கும் கீழே உள்ள லிங்குகளைப் பயன்படுத்தவும்:
 
-👉 [உங்களது வாட்ஸ்அப் குரூப் லிங்கை இங்கு போடவும்]
+📱 *1. ஃபோன் நம்பர் ரெஜிஸ்ட்ரேஷன் லிங்க்:*
+👉 https://t.me/ANADriverRegisterdbot
+
+💬 *2. குரூப் ஜாயினிங் லிங்க்:*
+👉 https://t.me/+8THVtkFFGew5NDc1
 
 குழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
       openWhatsApp(msg);
     }
 
     function sendAnaTelegramGroup() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - TELEGRAM GROUP* 📱
-
-வணக்கம்! ANA டெலிகிராம் குழுவில் இணைவதற்கு இந்த லிங்கைத் தொடர்ந்து ஃபாலோ பண்ணுங்க:
-
-👉 https://t.me/ANADriverRegisterdbot
-
-டெலிகிராம் பாட் வழிகாட்டுதலின்படி உங்கள் பதிவை முடிக்கலாம். நன்றி! 🙏`;
-      openWhatsApp(msg);
+      // இது டெலிகிராம் செயலியை நேரடியாக திறக்கும் மற்றும் ரெஜிஸ்ட்ரேஷன் & குரூப் லிங்க்குகளை காப்பி செய்து அனுப்பும்
+      const regLink = "https://t.me/ANADriverRegisterdbot";
+      const groupLink = "https://t.me/+8THVtkFFGew5NDc1";
+      
+      const tgMsg = `🚗 ANA CALL DRIVER SERVICE - TELEGRAM 📱\n\n1. Phone Registration Link:\n${regLink}\n\n2. Group Joining Link:\n${groupLink}`;
+      
+      // டெலிகிராம் ஷேர் லிங்க் (Telegram share URL)
+      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(groupLink)}&text=${encodeURIComponent(tgMsg)}`;
+      window.open(telegramUrl, '_blank');
     }
 
     function sendSafetyRules() {
