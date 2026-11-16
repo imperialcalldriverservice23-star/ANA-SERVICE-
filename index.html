@@ -238,6 +238,8 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .modal-header {
       display: flex;
@@ -466,17 +468,23 @@
             <td class="fare-highlight">₹1,500</td>
           </tr>
           <tr>
-            <td>• 12 Hours Outstation</td>
-            <td>251 KM+</td>
+            <td>• Outstation</td>
+            <td>Above 250 KM</td>
             <td class="fare-highlight">₹1,600</td>
+          </tr>
+          <tr>
+            <td>• Outstation Up & Down<br><span style="font-size:9px; color:#64748b;">(12 Hours / 1 Day)</span></td>
+            <td>700 KM Up & Down</td>
+            <td class="fare-highlight">₹1,700</td>
           </tr>
         </tbody>
       </table>
 
       <div class="mini-box" style="background: #fffbeb; border-color: #fef3c7; color: #92400e;">
-        <b>📌 கூடுதல் கட்டணங்கள் (Extra Charges):</b><br>
+        <b>📌 கூடுதல் கட்டணங்கள் & விதிகள் (Extra Charges):</b><br>
         ⏱️ கூடுதல் நேரம்: ₹100/மணி | ⏰ 20 நிமிடம் இலவச சலுகை நேரம்<br>
-        🌙 இரவு கட்டணம்: ₹100 (10 PM - 5 AM) | 🚗 கார் டிராப் (One-Way): ₹150
+        🌙 இரவு கட்டணம்: ₹100 (10 PM - 5 AM). 5:00 AM அதிகாலை புக் செய்யப்படுவதற்கும் பொருந்தும்.<br>
+        📌 பில்லிங் பாலிசி: மணி மற்றும் கிலோமீட்டர் இரண்டும் கணக்கில் கொள்ளப்படும்.
       </div>
 
       <button class="btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE TARIFF ON WHATSAPP</button>
@@ -588,31 +596,62 @@
 
     function shareTariffToWhatsApp() {
       const msg = 
-`🚗 *ANA CALL DRIVER SERVICE* 🚗
-📞 Booking: 7358366165
-(Chennai's Trusted Chauffeur Service)
-━━━━━━━━━━━━━━━━━━━━
-✨ *100% METER-BASED TRANSPARENT BILLING*
-🔑 Secure 4-Digit Customer *OTP*
-📸 Start & End Meter Photo Verification
-📱 Instant WhatsApp Digital Bill
-━━━━━━━━━━━━━━━━━━━━
-📊 *OFFICIAL TARIFF PACKAGES:*
-• 4 Hours Local (Up to 79 KM) : *₹550*
-• 4 Hours Out of City (80 - 120 KM) : *₹650*
-• 6 Hours Package (121 - 139 KM) : *₹850*
-• 8 Hours Package (140 - 180 KM) : *₹1,100*
-• 10 Hours Package (181 - 220 KM) : *₹1,300*
-• 12 Hours Package (221 - 250 KM) : *₹1,500*
-• 12 Hours Outstation (251 KM & Above) : *₹1,600*
-━━━━━━━━━━━━━━━━━━━━
-📌 *EXTRA CHARGES:*
-⏱️ Extra Time: Flat ₹100/hr (Package முடிந்த பிறகு)
-⏰ *Grace Period:* முதல் 20 நிமிடங்கள் முற்றிலும் இலவசம்
-🌙 *Night Charge:* ₹100 (10:00 PM to 05:00 AM)
-🚗 *One-Way Drop:* ₹150 (Local drop trips only)
-━━━━━━━━━━━━━━━━━━━━
-நேர்மையான சேவை | துல்லியமான பில்லிங் 🙏`;
+`🚘 *ANA CALL DRIVER SERVICE* 🚘
+
+⭐ 100% TRANSPARENT BILLING SYSTEM
+
+✅ HOUR + KM BASED TARIFF
+✅ START & END METER PHOTO PROOF
+✅ 4-DIGIT CUSTOMER OTP
+✅ INSTANT WHATSAPP DIGITAL BILL
+✅ NO HIDDEN CHARGES
+
+━━━━━━━━━━━━━━
+📊 *OFFICIAL TARIFF RATE CARD*
+
+🚗 4 HOURS PACKAGE
+UP TO 79 KM – *₹550*
+
+🚗 4 HOURS PACKAGE
+80–120 KM – *₹650*
+
+🚗 6 HOURS PACKAGE
+121–139 KM – *₹850*
+
+🚗 8 HOURS PACKAGE
+140–180 KM – *₹1,100*
+
+🚗 10 HOURS PACKAGE
+181–220 KM – *₹1,300*
+
+🚗 12 HOURS PACKAGE
+221–250 KM – *₹1,500*
+
+🚗 OUTSTATION
+ABOVE 250 KM – *₹1,600*
+
+🚗 OUTSTATION
+700 KM UP & DOWN – *₹1,700*
+(12 HOURS / 1 DAY)
+
+🌙 *NIGHT CHARGES*
+*10:00 PM – 5:00 AM*
+Night Charges Applicable for bookings during this time, including 5:00 AM early morning bookings.
+━━━━━━━━━━━━━━
+
+⏱️ EXTRA TIME: *₹100* / HOUR
+⏳ GRACE TIME: *20 MINUTES*
+
+📌 BILLING POLICY
+BOTH HOURS & KILOMETERS ARE CONSIDERED.
+
+📍 CHENNAI CITY & OUTSTATION
+
+❤️ YOUR TRUST IS OUR PRIORITY!
+
+📞 *BOOK NOW*
+ANA CALL DRIVER SERVICE 🚘
+📞 7358366165`;
 
       openWhatsApp(msg);
       closeTariffModal();
@@ -668,80 +707,4 @@ No hidden charges! Purely based on *Actual KM + Duration*.
 
 பணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
       openWhatsApp(msg);
-      closeQrModal();
-    }
-
-    function sendNoDriver() {
-      const msg = `🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE* 🚫
-
-Dear Customer, currently all our professional drivers are assigned to ongoing trips in your area. 🚗💨
-
-We will notify you immediately once a driver becomes available. We sincerely apologize for the inconvenience! 🙏`;
-      openWhatsApp(msg);
-    }
-
-    function sendLocation() {
-      const msg = `📍 *ANA CALL DRIVER SERVICE* 📍
-
-Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsApp so our assigned driver can reach your location promptly! 🚗🗺️`;
-      openWhatsApp(msg);
-    }
-
-    function sendDriverForm() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗
-
-வணக்கம்! எங்கள் நிறுவனத்தில் ஓட்டுநராக இணைய விரும்பினால், கீழே உள்ள ஆன்லைன் படிவத்தை (Online Form) பூர்த்தி செய்து சமர்ப்பிக்கவும்:
-
-📝 *ஆன்லைன் பதிவு லிங்க்:*
-👉 https://tally.so/r/A7eoky
-
-விவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
-      openWhatsApp(msg);
-    }
-
-    function sendAnaWhatsAppGroup() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUPS* 💬
-
-வணக்கம்! ANA வாட்ஸ்அப் குழுக்களில் இணைவதற்கும் மற்றும் நம்பர் பதிவு செய்வதற்கும் கீழே உள்ள லிங்குகளைப் பயன்படுத்தவும்:
-
-📱 *1. ஃபோன் நம்பர் ரெஜிஸ்ட்ரேஷன் லிங்க்:*
-👉 https://t.me/ANADriverRegisterdbot
-
-💬 *2. குரூப் ஜாயினிங் லிங்க்:*
-👉 https://t.me/+8THVtkFFGew5NDc1
-
-குழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
-      openWhatsApp(msg);
-    }
-
-    function sendAnaTelegramGroup() {
-      // இது டெலிகிராம் செயலியை நேரடியாக திறக்கும் மற்றும் ரெஜிஸ்ட்ரேஷன் & குரூப் லிங்க்குகளை காப்பி செய்து அனுப்பும்
-      const regLink = "https://t.me/ANADriverRegisterdbot";
-      const groupLink = "https://t.me/+8THVtkFFGew5NDc1";
-      
-      const tgMsg = `🚗 ANA CALL DRIVER SERVICE - TELEGRAM 📱\n\n1. Phone Registration Link:\n${regLink}\n\n2. Group Joining Link:\n${groupLink}`;
-      
-      // டெலிகிராம் ஷேர் லிங்க் (Telegram share URL)
-      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(groupLink)}&text=${encodeURIComponent(tgMsg)}`;
-      window.open(telegramUrl, '_blank');
-    }
-
-    function sendSafetyRules() {
-      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️
-
-வணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐
-
-✅ 1. Experienced Drivers Only
-✅ 2. License Verified
-✅ 3. Verified Records Protected
-✅ 4. Zero Tolerance Policy
-✅ 5. Live Driver Verification
-
-⚠️ *முக்கிய அறிவிப்பு:* 
-ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
-📞 தொடர்பு எண்: 7358366165`;
-      openWhatsApp(msg);
-    }
-  </script>
-</body>
-</html>
+      c
