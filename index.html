@@ -1,696 +1,528 @@
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANA Call Driver Service - Portal</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    body {
-      background-color: #f1f5f9;
-      display: flex;
-      justify-content: center;
-      padding: 10px 12px;
-    }
-    .container {
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .header-card {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      padding: 14px 16px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    .badge {
-      display: inline-block;
-      background-color: #f59e0b;
-      color: #000;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 20px;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-    .title {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-bottom: 3px;
-    }
-    .subtitle {
-      font-size: 11px;
-      color: #94a3b8;
-    }
-    .input-card {
-      background: white;
-      padding: 12px 14px;
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .input-label {
-      font-size: 10px;
-      font-weight: 700;
-      color: #475569;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .input-wrapper {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-    .input-box {
-      flex: 1;
-      padding: 10px 12px;
-      font-size: 15px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
-      outline: none;
-      font-weight: 600;
-      color: #0f172a;
-    }
-    .input-box:focus {
-      border-color: #0d9488;
-    }
-    .btn-action {
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
-      background-color: #f8fafc;
-      color: #334155;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s;
-    }
-    .btn-action:active {
-      transform: scale(0.95);
-      background-color: #e2e8f0;
-    }
-    .input-hint {
-      font-size: 10px;
-      color: #94a3b8;
-      margin-top: 4px;
-    }
-    .section-card {
-      background: white;
-      padding: 12px 14px;
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .section-title {
-      font-size: 11px;
-      font-weight: 800;
-      color: #334155;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .btn-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .btn {
-      padding: 11px 8px;
-      border-radius: 10px;
-      border: none;
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      text-decoration: none;
-      transition: all 0.15s ease;
-      text-align: center;
-    }
-    .btn:active {
-      transform: scale(0.97);
-    }
-    .btn-teal {
-      background-color: #0f766e;
-      color: white;
-    }
-    .btn-outline {
-      background-color: #ffffff;
-      color: #334155;
-      border: 1.5px solid #e2e8f0;
-    }
-    .btn-purple {
-      background-color: #7c3aed;
-      color: white;
-      width: 100%;
-      font-size: 12px;
-      padding: 12px 10px;
-      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.2);
-    }
-    .btn-green {
-      background-color: #16a34a;
-      color: white;
-      width: 100%;
-      font-size: 12px;
-      padding: 12px 10px;
-      box-shadow: 0 3px 10px rgba(22, 163, 74, 0.2);
-    }
-    .btn-blue {
-      background-color: #0284c7;
-      color: white;
-      width: 100%;
-      font-size: 12px;
-      padding: 12px 10px;
-      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.2);
-    }
-    .btn-red {
-      background-color: #b91c1c;
-      color: white;
-      width: 100%;
-      font-size: 12px;
-      padding: 11px 10px;
-    }
-    .rules-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 11px;
-      color: #334155;
-      line-height: 1.4;
-    }
-    .rule-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 5px;
-    }
-    .alert-box {
-      background-color: #fff1f2;
-      border: 1px dashed #f43f5e;
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-size: 10px;
-      color: #9f1239;
-      line-height: 1.35;
-      font-weight: 600;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANA Call Driver Service</title>
 
-    /* MODAL POPUPS */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(3px);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-    }
-    .modal-card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 420px;
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1.5px solid #f1f5f9;
-      padding-bottom: 6px;
-    }
-    .modal-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-    .close-btn {
-      background: #f1f5f9;
-      border: none;
-      font-size: 16px;
-      font-weight: bold;
-      color: #475569;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .tariff-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-    }
-    .tariff-table th {
-      background: #0f766e;
-      color: white;
-      padding: 5px 8px;
-      text-align: left;
-      font-weight: 700;
-    }
-    .tariff-table td {
-      padding: 5px 8px;
-      border-bottom: 1px solid #f1f5f9;
-      color: #1e293b;
-      font-weight: 600;
-    }
-    .tariff-table tr:nth-child(even) {
-      background: #f8fafc;
-    }
-    .fare-highlight {
-      color: #0f766e;
-      font-weight: 800;
-      font-size: 12px;
-      text-align: right;
-      white-space: nowrap;
-    }
-    .mini-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-size: 10px;
-      color: #334155;
-      line-height: 1.35;
-    }
-    .btn-whatsapp-share {
-      background-color: #22c55e;
-      color: white;
-      width: 100%;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 10px;
-      box-shadow: 0 3px 10px rgba(34, 197, 94, 0.25);
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* QR MODAL */
-    .qr-container {
-      text-align: center;
-      padding: 8px 0;
-    }
-    .qr-image {
-      width: 200px;
-      height: 200px;
-      object-fit: contain;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      background: white;
-    }
-    .upi-tag {
-      font-family: monospace;
-      font-size: 12px;
-      background-color: #f1f5f9;
-      padding: 6px 10px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 6px;
-      font-weight: 700;
-      color: #0f172a;
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f1f5f9;display:flex;justify-content:center;padding:10px 12px}
+.container{width:100%;max-width:440px;display:flex;flex-direction:column;gap:10px}
+.header-card{background:linear-gradient(135deg,#0f172a,#1e293b);color:white;padding:16px;border-radius:16px;text-align:center}
+.badge{display:inline-block;background:#f59e0b;color:#000;font-size:10px;font-weight:800;padding:4px 9px;border-radius:20px;margin-bottom:7px}
+.title{font-size:18px;font-weight:800}
+.subtitle{font-size:11px;color:#94a3b8;margin-top:4px}
+.input-card,.section-card{background:white;padding:13px 14px;border-radius:14px;box-shadow:0 2px 8px #00000008}
+.section-card{display:flex;flex-direction:column;gap:9px}
+.input-label,.section-title{font-size:11px;font-weight:800;color:#334155;margin-bottom:7px}
+.input-wrapper{display:flex;gap:6px}
+.input-box{flex:1;min-width:0;padding:11px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:15px}
+.btn-action{padding:9px;border:1px solid #cbd5e1;border-radius:9px;background:#f8fafc;font-size:11px;font-weight:700}
+.input-hint{font-size:10px;color:#94a3b8;margin-top:5px}
+.btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{padding:12px 7px;border-radius:10px;border:0;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;text-align:center;text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn-teal{background:#0f766e;color:white}
+.btn-outline{background:white;color:#334155;border:1.5px solid #e2e8f0}
+.btn-purple{background:#7c3aed;color:white;width:100%}
+.btn-green{background:#16a34a;color:white;width:100%}
+.btn-blue{background:#0284c7;color:white;width:100%}
+.btn-red{background:#b91c1c;color:white;width:100%}
+.rules-list{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#334155;line-height:1.5}
+.alert-box{background:#fff1f2;border:1px dashed #f43f5e;padding:9px;border-radius:8px;font-size:10px;color:#9f1239;line-height:1.5}
+.modal-overlay{display:none;position:fixed;inset:0;background:#0f172acc;z-index:9999;justify-content:center;align-items:center;padding:10px}
+.modal-card{background:white;width:100%;max-width:420px;max-height:92vh;overflow-y:auto;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f1f5f9;padding-bottom:9px}
+.modal-title{font-size:14px;font-weight:800;color:#0f172a}
+.close-btn{background:#f1f5f9;border:0;font-size:16px;font-weight:bold;width:28px;height:28px;border-radius:50%;cursor:pointer}
+.tariff-table{width:100%;border-collapse:collapse;font-size:11px}
+.tariff-table th{background:#0f766e;color:white;padding:8px 5px;text-align:left}
+.tariff-table td{padding:8px 5px;border-bottom:1px solid #e2e8f0;color:#1e293b;font-weight:600}
+.tariff-table tr:nth-child(even){background:#f8fafc}
+.fare-highlight{color:#0f766e;font-weight:800;font-size:12px;text-align:right;white-space:nowrap}
+.mini-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:9px;font-size:11px;color:#334155;line-height:1.6}
+.btn-whatsapp-share{background:#22c55e;color:white;width:100%;font-size:12px;font-weight:800;padding:13px;border-radius:8px;border:0;cursor:pointer}
+.qr-container{text-align:center;padding:8px 0}
+.qr-image{width:200px;height:200px;object-fit:contain;border-radius:12px;border:1px solid #e2e8f0}
+.upi-tag{font-family:monospace;font-size:12px;background:#f1f5f9;padding:7px;border-radius:6px;display:inline-block;margin-top:7px;font-weight:700}
+</style>
 </head>
+
 <body>
+<div class="container">
 
-  <div class="container">
+<!-- HEADER -->
+<div class="header-card">
+<div class="badge">⭐ 5.0 RATED SERVICE</div>
+<div class="title">🚗 ANA CALL DRIVER SERVICE</div>
+<div class="subtitle">Chennai's Trusted Chauffeur Service • 24x7</div>
+</div>
 
-    <!-- Header Card -->
-    <div class="header-card">
-      <div class="badge">⭐ 5.0 RATED SERVICE</div>
-      <div class="title">🚗 ANA CALL DRIVER SERVICE</div>
-      <div class="subtitle">Chennai's Trusted Chauffeur Service • 24x7</div>
-    </div>
+<!-- MOBILE NUMBER -->
+<div class="input-card">
+<label class="input-label">CUSTOMER / DRIVER WHATSAPP NUMBER</label>
+<div class="input-wrapper">
+<input type="tel" id="mobileNumber" class="input-box" placeholder="Enter or paste mobile number">
+<button class="btn-action" onclick="pasteNumber()">📋 PASTE</button>
+<button class="btn-action" onclick="clearNumber()">✕</button>
+</div>
+<div class="input-hint">Paste 10-digit number or +91XXXXXXXXXX</div>
+</div>
 
-    <!-- WhatsApp Number Input Card -->
-    <div class="input-card">
-      <label class="input-label">CUSTOMER / DRIVER WHATSAPP NUMBER</label>
-      <div class="input-wrapper">
-        <input type="tel" id="mobileNumber" class="input-box" placeholder="Enter or paste mobile number">
-        <button type="button" class="btn-action" onclick="pasteNumber()">📋 PASTE</button>
-        <button type="button" class="btn-action" onclick="clearNumber()">✕</button>
-      </div>
-      <div class="input-hint">Paste 10-digit number or +91XXXXXXXXXX</div>
-    </div>
+<!-- CUSTOMER MESSAGES -->
+<div class="section-card">
+<div class="section-title">💬 CUSTOMER MESSAGES</div>
 
-    <!-- Customer Messages Section -->
-    <div class="section-card">
-      <div class="section-title">💬 CUSTOMER MESSAGES</div>
-      
-      <div class="btn-grid">
-        <button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
-        <button class="btn btn-teal" onclick="openTariffModal()">💰 TARIFF CHART</button>
-      </div>
+<div class="btn-grid">
+<button class="btn btn-teal" onclick="sendWelcome()">🙏 WELCOME</button>
+<button class="btn btn-teal" onclick="openTariffModal()">💰 TARIFF CHART</button>
+</div>
 
-      <div class="btn-grid">
-        <button class="btn btn-outline" onclick="sendBookingFormat()">📝 BOOKING FORMAT</button>
-        <button class="btn btn-outline" onclick="sendLocation()">📍 SEND LOCATION</button>
-      </div>
+<div class="btn-grid">
+<button class="btn btn-outline" onclick="sendBookingFormat()">📝 BOOKING FORMAT</button>
+<button class="btn btn-outline" onclick="sendLocation()">📍 SEND LOCATION</button>
+</div>
 
-      <div class="btn-grid">
-        <button class="btn btn-outline" onclick="openQrModal()">💳 SCAN & PAY (QR)</button>
-        <button class="btn btn-outline" onclick="sendPaymentDetails()">📲 SEND UPI (TEXT)</button>
-      </div>
+<div class="btn-grid">
+<button class="btn btn-outline" onclick="openQrModal()">💳 SCAN & PAY (QR)</button>
+<button class="btn btn-outline" onclick="sendPaymentDetails()">📲 SEND UPI (TEXT)</button>
+</div>
 
-      <div class="btn-grid">
-        <button class="btn btn-outline" onclick="sendNoDriver()">🚫 NO DRIVER</button>
-        <a href="tel:7358366165" class="btn btn-outline">📞 CALL SUPPORT</a>
-      </div>
-    </div>
+<div class="btn-grid">
+<button class="btn btn-outline" onclick="sendNoDriver()">🚫 NO DRIVER</button>
+<a href="tel:7358366165" class="btn btn-outline">📞 CALL SUPPORT</a>
+</div>
+</div>
 
-    <!-- Driver Onboarding & Registration Section -->
-    <div class="section-card">
-      <div class="section-title">🚗 DRIVER ONBOARDING & REGISTRATION</div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (TALLY)</button>
-        <button class="btn btn-green" onclick="sendAnaWhatsAppGroup()">💬 ANA வாட்ஸ்அப் குரூப் (WHATSAPP)</button>
-        <button class="btn btn-blue" onclick="sendAnaTelegramGroup()">📱 ANA டெலிகிராம் குரூப் (TELEGRAM)</button>
-      </div>
-    </div>
+<!-- DRIVER REGISTRATION -->
+<div class="section-card">
+<div class="section-title">🚗 DRIVER ONBOARDING & REGISTRATION</div>
+<button class="btn btn-purple" onclick="sendDriverForm()">📲 SEND DRIVER JOINING FORM (TALLY)</button>
+<button class="btn btn-green" onclick="sendAnaWhatsAppGroup()">💬 ANA வாட்ஸ்அப் குரூப்</button>
+<button class="btn btn-blue" onclick="sendAnaTelegramGroup()">📱 ANA டெலிகிராம் குரூப்</button>
+</div>
 
-    <!-- Safety & Rules Section -->
-    <div class="section-card">
-      <div class="section-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
+<!-- SAFETY -->
+<div class="section-card">
+<div class="section-title">🛡️ CUSTOMER SAFETY & RULES 👮</div>
 
-      <div class="rules-list">
-        <div class="rule-item">🎖️ <b>Experienced Drivers:</b> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</div>
-        <div class="rule-item">📜 <b>License Verified:</b> அரசு உரிமம் முழுமையாக சரிபார்க்கப்பட்டது.</div>
-        <div class="rule-item">⏱️ <b>Transparent Meter:</b> தூரம் (KM) மற்றும் நேரக் கணக்கீடு.</div>
-        <div class="rule-item">🔑 <b>Customer OTP:</b> OTP கூறிய பிறகே பயணம் தொடங்கும்.</div>
-      </div>
+<div class="rules-list">
+<div>🎖️ <b>Experienced Drivers:</b> அனுபவமிக்க ஓட்டுநர்கள் மட்டுமே.</div>
+<div>📜 <b>License Verified:</b> அரசு உரிமம் சரிபார்க்கப்பட்டது.</div>
+<div>⏱️ <b>Transparent Meter:</b> KM மற்றும் நேரக் கணக்கீடு.</div>
+<div>🔑 <b>Customer OTP:</b> OTP கூறிய பிறகே பயணம் தொடங்கும்.</div>
+</div>
 
-      <div class="alert-box">
-        ⚠️ <b>முக்கிய அறிவிப்பு:</b> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
-      </div>
+<div class="alert-box">
+⚠️ <b>முக்கிய அறிவிப்பு:</b> ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
+</div>
 
-      <button class="btn btn-red" onclick="sendSafetyRules()">📲 SEND SAFETY RULES VIA WHATSAPP</button>
-    </div>
+<button class="btn btn-red" onclick="sendSafetyRules()">📲 SEND SAFETY RULES VIA WHATSAPP</button>
+</div>
+</div>
 
-  </div>
+<!-- OFFICIAL TARIFF POPUP -->
+<div class="modal-overlay" id="tariffModal" onclick="closeModalOnOutside(event,'tariffModal')">
+<div class="modal-card">
 
-  <!-- TARIFF MODAL -->
-  <div class="modal-overlay" id="tariffModal" onclick="closeModalOnOutside(event, 'tariffModal')">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">📊 கட்டண விபரம் (Official Tariff)</div>
-        <button class="close-btn" onclick="closeTariffModal()">✕</button>
-      </div>
+<div class="modal-header">
+<div class="modal-title">📊 OFFICIAL TARIFF RATE CARD</div>
+<button class="close-btn" onclick="closeTariffModal()">✕</button>
+</div>
 
-      <table class="tariff-table">
-        <thead>
-          <tr>
-            <th>பேக்கேஜ் விபரம்</th>
-            <th>தூரம் (KM)</th>
-            <th style="text-align: right;">கட்டணம்</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>• 4 Hours Local</td>
-            <td>Up to 79 KM</td>
-            <td class="fare-highlight">₹550</td>
-          </tr>
-          <tr>
-            <td>• 4 Hours Out of City</td>
-            <td>80 - 120 KM</td>
-            <td class="fare-highlight">₹650</td>
-          </tr>
-          <tr>
-            <td>• 6 Hours Package</td>
-            <td>121 - 139 KM</td>
-            <td class="fare-highlight">₹850</td>
-          </tr>
-          <tr>
-            <td>• 8 Hours Package</td>
-            <td>140 - 180 KM</td>
-            <td class="fare-highlight">₹1,100</td>
-          </tr>
-          <tr>
-            <td>• 10 Hours Package</td>
-            <td>181 - 220 KM</td>
-            <td class="fare-highlight">₹1,300</td>
-          </tr>
-          <tr>
-            <td>• 12 Hours Package</td>
-            <td>221 - 250 KM</td>
-            <td class="fare-highlight">₹1,500</td>
-          </tr>
-          <tr>
-            <td>• Outstation</td>
-            <td>Above 250 KM</td>
-            <td class="fare-highlight">₹1,600</td>
-          </tr>
-          <tr>
-            <td>• Outstation Up & Down<br><span style="font-size:9px; color:#64748b;">(12 Hours / 1 Day)</span></td>
-            <td>700 KM Up & Down</td>
-            <td class="fare-highlight">₹1,700</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="mini-box" style="background:#ecfdf5;color:#065f46">
+🚘 <b>ANA CALL DRIVER SERVICE</b><br>
+⭐ 100% TRANSPARENT BILLING SYSTEM<br>
+✅ HOUR + KM BASED TARIFF<br>
+✅ START & END METER PHOTO PROOF<br>
+✅ 4-DIGIT CUSTOMER OTP<br>
+✅ INSTANT WHATSAPP DIGITAL BILL<br>
+✅ NO HIDDEN CHARGES
+</div>
 
-      <div class="mini-box" style="background: #fffbeb; border-color: #fef3c7; color: #92400e;">
-        <b>📌 கூடுதல் கட்டணங்கள் & விதிகள் (Extra Charges):</b><br>
-        ⏱️ கூடுதல் நேரம்: ₹100/மணி | ⏰ 20 நிமிடம் இலவச சலுகை நேரம்<br>
-        🌙 இரவு கட்டணம்: ₹100 (10 PM - 5 AM). 5:00 AM அதிகாலை புக் செய்யப்படுவதற்கும் பொருந்தும்.<br>
-        📌 பில்லிங் பாலிசி: மணி மற்றும் கிலோமீட்டர் இரண்டும் கணக்கில் கொள்ளப்படும்.
-      </div>
+<table class="tariff-table">
+<thead>
+<tr>
+<th>PACKAGE</th>
+<th>DISTANCE</th>
+<th style="text-align:right">FARE</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>🚗 4 Hours</td><td>Up to 79 KM</td><td class="fare-highlight">₹550</td></tr>
+<tr><td>🚗 4 Hours</td><td>80–120 KM</td><td class="fare-highlight">₹650</td></tr>
+<tr><td>🚗 6 Hours</td><td>121–139 KM</td><td class="fare-highlight">₹850</td></tr>
+<tr><td>🚗 8 Hours</td><td>140–180 KM</td><td class="fare-highlight">₹1,100</td></tr>
+<tr><td>🚗 10 Hours</td><td>181–220 KM</td><td class="fare-highlight">₹1,300</td></tr>
+<tr><td>🚗 12 Hours</td><td>221–250 KM</td><td class="fare-highlight">₹1,500</td></tr>
+<tr><td>🚗 Outstation</td><td>Above 250 KM</td><td class="fare-highlight">₹1,600</td></tr>
+<tr><td>🚗 Outstation</td><td>700 KM Up & Down</td><td class="fare-highlight">₹1,700</td></tr>
+</tbody>
+</table>
 
-      <button class="btn-whatsapp-share" onclick="shareTariffToWhatsApp()">📲 SHARE TARIFF ON WHATSAPP</button>
-    </div>
-  </div>
+<div class="mini-box" style="background:#fffbeb;border-color:#fef3c7;color:#92400e">
+🌙 <b>NIGHT CHARGES / EARLY MORNING CHARGES</b><br>
+⏰ <b>10:00 PM – 5:00 AM</b><br>
+💰 <b>NIGHT CHARGE: ₹100</b><br>
+Applicable for all bookings between 10:00 PM and 5:00 AM, including early morning bookings.
+</div>
 
-  <!-- QR CODE MODAL -->
-  <div class="modal-overlay" id="qrModal" onclick="closeModalOnOutside(event, 'qrModal')">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">💳 Scan & Pay (Google Pay / UPI)</div>
-        <button class="close-btn" onclick="closeQrModal()">✕</button>
-      </div>
+<div class="mini-box">
+⏱️ <b>EXTRA TIME:</b> ₹100 / HOUR<br>
+⏳ <b>GRACE TIME:</b> 20 MINUTES<br>
+📌 <b>BILLING POLICY:</b><br>
+BOTH HOURS & KILOMETERS ARE CONSIDERED.<br>
+📍 CHENNAI CITY & OUTSTATION<br><br>
+❤️ YOUR TRUST IS OUR PRIORITY!
+</div>
 
-      <div class="qr-container">
-        <img id="qrImageElement" class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR" alt="UPI QR Code">
-        <br>
-        <span class="upi-tag">anacalldriverservice@okhdfcbank</span>
-      </div>
+<button class="btn-whatsapp-share" onclick="shareTariffToWhatsApp()">
+📲 SHARE TARIFF ON WHATSAPP
+</button>
 
-      <div class="mini-box" style="text-align: center;">
-        Scan with <b>Google Pay, PhonePe, Paytm</b> or any UPI App.
-      </div>
+</div>
+</div>
 
-      <button class="btn-whatsapp-share" onclick="shareQrImageDirectly()">📲 SHARE QR PHOTO TO WHATSAPP</button>
-      
-      <button class="btn btn-outline" style="width: 100%; font-size: 11px; padding: 8px;" onclick="sendPaymentDetails()">💬 SEND UPI TEXT & QR LINK</button>
-    </div>
-  </div>
+<!-- QR CODE POPUP -->
+<div class="modal-overlay" id="qrModal" onclick="closeModalOnOutside(event,'qrModal')">
+<div class="modal-card">
 
-  <script>
-    async function pasteNumber() {
-      try {
-        const text = await navigator.clipboard.readText();
-        document.getElementById("mobileNumber").value = text.trim();
-      } catch (err) {
-        alert("எண்ணை பாக்ஸில் அழுத்திப் பிடித்து (Long press) Paste செய்யவும்.");
-      }
-    }
+<div class="modal-header">
+<div class="modal-title">💳 SCAN & PAY (UPI)</div>
+<button class="close-btn" onclick="closeQrModal()">✕</button>
+</div>
 
-    function clearNumber() {
-      document.getElementById("mobileNumber").value = "";
-      document.getElementById("mobileNumber").focus();
-    }
+<div class="qr-container">
+<img id="qrImageElement" class="qr-image" alt="UPI QR Code">
+<br>
+<span class="upi-tag">anacalldriverservice@okhdfcbank</span>
+</div>
 
-    function getCleanNumber() {
-      let num = document.getElementById("mobileNumber").value.trim();
-      num = num.replace(/[^0-9]/g, '');
-      if (num.length === 10) {
-        num = '91' + num;
-      }
-      return num;
-    }
+<div class="mini-box" style="text-align:center">
+Scan with <b>Google Pay, PhonePe, Paytm</b> or any UPI App.
+</div>
 
-    function openWhatsApp(message) {
-      const phone = getCleanNumber();
-      if (!phone) {
-        alert("தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!");
-        document.getElementById("mobileNumber").focus();
-        return;
-      }
-      const encodedMsg = encodeURIComponent(message);
-      const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`;
-      window.open(url, '_blank');
-    }
+<button class="btn-whatsapp-share" onclick="shareQrImageDirectly()">📲 SHARE QR PHOTO</button>
+<button class="btn btn-outline" onclick="sendPaymentDetails()">💬 SEND UPI TEXT & QR LINK</button>
 
-    function openTariffModal() {
-      document.getElementById("tariffModal").style.display = "flex";
-    }
+</div>
+</div>
 
-    function closeTariffModal() {
-      document.getElementById("tariffModal").style.display = "none";
-    }
+<script>
 
-    function openQrModal() {
-      document.getElementById("qrModal").style.display = "flex";
-    }
+/* WHATSAPP NUMBER */
 
-    function closeQrModal() {
-      document.getElementById("qrModal").style.display = "none";
-    }
+async function pasteNumber(){
+try{
+const text=await navigator.clipboard.readText();
+document.getElementById("mobileNumber").value=text.trim();
+}catch(e){
+alert("எண்ணை பாக்ஸில் அழுத்திப் பிடித்து Paste செய்யவும்.");
+}
+}
 
-    function closeModalOnOutside(e, modalId) {
-      if (e.target.id === modalId) {
-        document.getElementById(modalId).style.display = "none";
-      }
-    }
+function clearNumber(){
+document.getElementById("mobileNumber").value="";
+document.getElementById("mobileNumber").focus();
+}
 
-    async function shareQrImageDirectly() {
-      const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
-      try {
-        const response = await fetch(qrUrl);
-        const blob = await response.blob();
-        const file = new File([blob], "ANA_Call_Driver_QR.png", { type: "image/png" });
+function getCleanNumber(){
+let num=document.getElementById("mobileNumber").value.trim();
+num=num.replace(/[^0-9]/g,"");
+if(num.length===10)num="91"+num;
+return num;
+}
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: 'ANA Call Driver Service - UPI QR Code',
-            text: 'பயணக் கட்டணத்தைச் செலுத்த இந்த QR Code-ஐ ஸ்கேன் செய்யவும்.\nUPI: anacalldriverservice@okhdfcbank'
-          });
-        } else {
-          sendPaymentDetails();
-        }
-      } catch (error) {
-        sendPaymentDetails();
-      }
-    }
+function openWhatsApp(message){
+const phone=getCleanNumber();
 
-    function shareTariffToWhatsApp() {
-      const msg = 
-"🚘 *ANA CALL DRIVER SERVICE* 🚘\n\n" +
-"⭐ 100% TRANSPARENT BILLING SYSTEM\n\n" +
-"✅ HOUR + KM BASED TARIFF\n" +
-"✅ START & END METER PHOTO PROOF\n" +
-"✅ 4-DIGIT CUSTOMER OTP\n" +
-"✅ INSTANT WHATSAPP DIGITAL BILL\n" +
-"✅ NO HIDDEN CHARGES\n\n" +
-"━━━━━━━━━━━━━━\n" +
-"📊 *OFFICIAL TARIFF RATE CARD*\n\n" +
-"🚗 4 HOURS PACKAGE\n" +
-"UP TO 79 KM – *₹550*\n\n" +
-"🚗 4 HOURS PACKAGE\n" +
-"80–120 KM – *₹650*\n\n" +
-"🚗 6 HOURS PACKAGE\n" +
-"121–139 KM – *₹850*\n\n" +
-"🚗 8 HOURS PACKAGE\n" +
-"140–180 KM – *₹1,100*\n\n" +
-"🚗 10 HOURS PACKAGE\n" +
-"181–220 KM – *₹1,300*\n\n" +
-"🚗 12 HOURS PACKAGE\n" +
-"221–250 KM – *₹1,500*\n\n" +
-"🚗 OUTSTATION\n" +
-"ABOVE 250 KM – *₹1,600*\n\n" +
-"🚗 OUTSTATION\n" +
-"700 KM UP & DOWN – *₹1,700*\n" +
-"(12 HOURS / 1 DAY)\n\n" +
-"🌙 *NIGHT CHARGES*\n" +
-"*10:00 PM – 5:00 AM*\n" +
-"Night Charges Applicable for bookings during this time, including 5:00 AM early morning bookings.\n" +
-"━━━━━━━━━━━━━━\n\n" +
-"⏱️ EXTRA TIME: *₹100* / HOUR\n" +
-"⏳ GRACE TIME: *20 MINUTES*\n\n" +
-"📌 BILLING POLICY\n" +
-"BOTH HOURS & KILOMETERS ARE CONSIDERED.\n\n" +
-"📍 CHENNAI CITY & OUTSTATION\n\n" +
-"❤️ YOUR TRUST IS OUR PRIORITY!\n\n" +
-"📞 *BOOK NOW*\n" +
-"ANA CALL DRIVER SERVICE 🚘\n" +
-"📞 7358366165";
+if(!phone || phone.length<11 || phone.length>15){
+alert("தயவுசெய்து சரியான மொபைல் எண்ணை உள்ளிடவும்!");
+document.getElementById("mobileNumber").focus();
+return;
+}
 
-      openWhatsApp(msg);
-      closeTariffModal();
-    }
+const url="https://api.whatsapp.com/send?phone="+phone+"&text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
 
-    function sendWelcome() {
-      const msg = `⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡\n✨ _Safe | Reliable | 100% Professional_ ✨\n\nThank you for contacting us! 🙏 We are always ready to drive you safely! 🚗💨\n\n🏆 *DIGITAL METER BILLING!* ⏱️🚘\nNo hidden charges! Purely based on *Actual KM + Duration*.\n\n🟢 *Trip Start:* Start KM & Time Photo\n🔴 *Trip End:* Final Speedometer Reading\n🧾 *Fair Bill:* Exact bill generated automatically! 💯\n\n⭐ 100% Police Verified Drivers | 5-Star Service\n📞 24/7 Helpline: 7358366165`;
-      openWhatsApp(msg);
-    }
+/* POPUPS */
 
-    function sendBookingFormat() {
-      const msg = `📝 *ANA CALL DRIVER SERVICE - BOOKING DETAILS* 🚗\n\nடிரைவர் முன்பதிவு செய்ய கீழே உள்ள விவரங்களை நிரப்பி அனுப்பவும்:\n\n👤 வாடிக்கையாளர் பெயர்:\n📍 பிக்கப் இடம் (Pickup Location):\n🏁 சேருமிடம் (Destination):\n📅 தேதி (Date):\n⏰ நேரம் (Pickup Time):\n🚗 கார் வகை (Manual / Automatic):\n⌛ தேவையான பேக்கேஜ் (Hours):\n\nவிவரங்கள் கிடைத்தவுடன் டிரைவர் உறுதி செய்யப்படுவார். நன்றி! 🙏`;
-      openWhatsApp(msg);
-    }
+function openTariffModal(){
+document.getElementById("tariffModal").style.display="flex";
+}
 
-    function sendPaymentDetails() {
-      const qrLink = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
-      const msg = `💳 *ANA CALL DRIVER SERVICE - PAYMENT DETAILS* 📲\n\nபயணக் கட்டணத்தை கீழே உள்ள முறையில் செலுத்தலாம்:\n\n📱 *UPI ID:* anacalldriverservice@okhdfcbank\n📞 *GPay / PhonePe Number:* 7358366165\n👤 *Account Name:* ANA Call Driver Service\n\n🖼️ *QR Code மூலம் ஸ்கேன் செய்து செலுத்த இந்த லிங்கைத் தொடவும்:*\n👉 ${qrLink}\n\nபணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
-      openWhatsApp(msg);
-      closeQrModal();
-    }
+function closeTariffModal(){
+document.getElementById("tariffModal").style.display="none";
+}
 
-    function sendNoDriver() {
-      const msg = `🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE* 🚫\n\nDear Customer, currently all our professional drivers are assigned to ongoing trips in your area. 🚗💨\n\nWe will notify you immediately once a driver becomes available. We sincerely apologize for the inconvenience! 🙏`;
-      openWhatsApp(msg);
-    }
+function openQrModal(){
+document.getElementById("qrModal").style.display="flex";
+}
 
-    function sendLocation() {
-      const msg = `📍 *ANA CALL DRIVER SERVICE* 📍\n\nDear Customer, kindly share your exact Live Location or Pickup Address on WhatsApp so our assigned driver can reach your location promptly! 🚗🗺️`;
-      openWhatsApp(msg);
-    }
+function closeQrModal(){
+document.getElementById("qrModal").style.display="none";
+}
 
-    function sendDriverForm() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗\n\nவணக்கம்! எங்கள் நிறுவனத்தில் ஓட்டுநராக இணைய விரும்பினால், கீழே உள்ள ஆன்லைன் படிவத்தை (Online Form) பூர்த்தி செய்து சமர்ப்பிக்கவும்:\n\n📝 *ஆன்லைன் பதிவு லிங்க்:*\n👉 https://tally.so/r/A7eoky\n\nவிவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
-      openWhatsApp(msg);
-    }
+function closeModalOnOutside(e,id){
+if(e.target.id===id){
+document.getElementById(id).style.display="none";
+}
+}
 
-    function sendAnaWhatsAppGroup() {
-      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUPS* 💬\n\nவணக்கம்! ANA வாட்ஸ்அப் குழுக்களில் இணைவதற்கும் மற்றும் நம்பர் பதிவு செய்வதற்கும் கீழே உள்ள லிங்குகளைப் பயன்படுத்தவும்:\n\n📱 *1. ஃபோன் நம்பர் ரெஜிஸ்ட்ரேஷன் லிங்க்:*\n👉 https://t.me/ANADriverRegisterdbot\n\n💬 *2. குரூப் ஜாயினிங் லிங்க்:*\n👉 https://t.me/+8THVtkFFGew5NDc1\n\nகுழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
-      openWhatsApp(msg);
-    }
+/* OFFICIAL TARIFF WHATSAPP MESSAGE */
 
-    function sendAnaTelegramGroup() {
-      const regLink = "https://t.me/ANADriverRegisterdbot";
-      const groupLink = "https://t.me/+8THVtkFFGew5NDc1";
-      
-      const tgMsg = `🚗 ANA CALL DRIVER SERVICE - TELEGRAM 📱\n\n1. Phone Registration Link:\n${regLink}\n\n2. Group Joining Link:\n${groupLink}`;
-      
-      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(groupLink)}&text=${encodeURIComponent(tgMsg)}`;
-      window.open(telegramUrl, '_blank');
-    }
+function shareTariffToWhatsApp(){
 
-    function sendSafetyRules() {
-      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️\n\nவணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐\n\n✅ 1. Experienced Drivers Only\n✅ 2. License Verified\n✅ 3. Verified Records Protected\n✅ 4. Zero Tolerance Policy\n✅ 5. Live Driver Verification\n\n⚠️ *முக்கிய அறிவிப்பு:* \nஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.\n📞 தொடர்பு எண்: 7358366165`;
-      openWhatsApp(msg);
-    }
-  </script>
+const msg=`🚘 *ANA CALL DRIVER SERVICE* 🚘
+
+⭐ *100% TRANSPARENT BILLING SYSTEM*
+
+✅ HOUR + KM BASED TARIFF
+✅ START & END METER PHOTO PROOF
+✅ 4-DIGIT CUSTOMER OTP
+✅ INSTANT WHATSAPP DIGITAL BILL
+✅ NO HIDDEN CHARGES
+
+━━━━━━━━━━━━━━
+📊 *OFFICIAL TARIFF RATE CARD*
+
+🚗 *4 HOURS PACKAGE*
+UP TO 79 KM – *₹550*
+
+🚗 *4 HOURS PACKAGE*
+80–120 KM – *₹650*
+
+🚗 *6 HOURS PACKAGE*
+121–139 KM – *₹850*
+
+🚗 *8 HOURS PACKAGE*
+140–180 KM – *₹1,100*
+
+🚗 *10 HOURS PACKAGE*
+181–220 KM – *₹1,300*
+
+🚗 *12 HOURS PACKAGE*
+221–250 KM – *₹1,500*
+
+🚗 *OUTSTATION*
+ABOVE 250 KM – *₹1,600*
+
+🚗 *OUTSTATION*
+700 KM UP & DOWN – *₹1,700*
+(12 HOURS / 1 DAY)
+
+━━━━━━━━━━━━━━
+
+🌙 *NIGHT CHARGES / EARLY MORNING CHARGES*
+
+⏰ *10:00 PM – 5:00 AM*
+💰 *NIGHT CHARGE: ₹100*
+
+Applicable for all bookings between 10:00 PM and 5:00 AM, including early morning bookings.
+
+━━━━━━━━━━━━━━
+
+⏱️ EXTRA TIME: *₹100 / HOUR*
+⏳ GRACE TIME: *20 MINUTES*
+
+📌 *BILLING POLICY*
+BOTH HOURS & KILOMETERS ARE CONSIDERED.
+
+📍 CHENNAI CITY & OUTSTATION
+
+❤️ YOUR TRUST IS OUR PRIORITY!
+
+📞 *BOOK NOW*
+ANA CALL DRIVER SERVICE 🚘
+📱 7358366165`;
+
+openWhatsApp(msg);
+closeTariffModal();
+}
+
+/* WELCOME MESSAGE */
+
+function sendWelcome(){
+const msg=`⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡
+
+✨ Safe | Reliable | Professional ✨
+
+Thank you for contacting us! 🙏
+
+🏆 *DIGITAL METER BILLING*
+No hidden charges!
+
+🟢 Trip Start: Start KM & Time Photo
+🔴 Trip End: Final Meter Reading
+🧾 Fair Digital Bill
+
+⭐ Professional Drivers
+📞 24/7 Helpline: 7358366165`;
+openWhatsApp(msg);
+}
+
+/* BOOKING FORMAT */
+
+function sendBookingFormat(){
+const msg=`📝 *ANA CALL DRIVER SERVICE - BOOKING DETAILS*
+
+டிரைவர் முன்பதிவு செய்ய கீழே உள்ள விவரங்களை நிரப்பி அனுப்பவும்:
+
+👤 வாடிக்கையாளர் பெயர்:
+📍 பிக்கப் இடம் (Pickup Location):
+🏁 சேருமிடம் (Destination):
+📅 தேதி (Date):
+⏰ நேரம் (Pickup Time):
+🚗 கார் வகை (Manual / Automatic):
+⌛ தேவையான பேக்கேஜ் (Hours):
+
+விவரங்கள் கிடைத்தவுடன் டிரைவர் உறுதி செய்யப்படுவார். நன்றி! 🙏`;
+openWhatsApp(msg);
+}
+
+/* LOCATION */
+
+function sendLocation(){
+const msg=`📍 *ANA CALL DRIVER SERVICE*
+
+Dear Customer, kindly share your exact Live Location or Pickup Address on WhatsApp so our assigned driver can reach your location promptly! 🚗`;
+openWhatsApp(msg);
+}
+
+/* NO DRIVER */
+
+function sendNoDriver(){
+const msg=`🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE*
+
+Dear Customer, currently all our professional drivers are assigned to ongoing trips in your area.
+
+We will notify you immediately once a driver becomes available. We sincerely apologize for the inconvenience! 🙏`;
+openWhatsApp(msg);
+}
+
+/* PAYMENT DETAILS */
+
+function getQrUrl(size=400){
+const upi="upi://pay?pa=anacalldriverservice@okhdfcbank&pn=ANA%20CALL%20DRIVER%20SERVICE&cu=INR";
+return "https://api.qrserver.com/v1/create-qr-code/?size="+size+"x"+size+"&data="+encodeURIComponent(upi);
+}
+
+document.getElementById("qrImageElement").src=getQrUrl(300);
+
+function sendPaymentDetails(){
+const qrLink=getQrUrl(400);
+
+const msg=`💳 *ANA CALL DRIVER SERVICE - PAYMENT DETAILS* 📲
+
+📱 *UPI ID:* anacalldriverservice@okhdfcbank
+📞 *GPay / PhonePe Number:* 7358366165
+👤 *Account Name:* ANA Call Driver Service
+
+🖼️ *SCAN & PAY QR CODE:*
+👉 ${qrLink}
+
+பணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
+
+openWhatsApp(msg);
+closeQrModal();
+}
+
+/* SHARE QR PHOTO */
+
+async function shareQrImageDirectly(){
+const qrUrl=getQrUrl(500);
+
+try{
+const response=await fetch(qrUrl);
+if(!response.ok)throw new Error("QR download failed");
+
+const blob=await response.blob();
+const file=new File([blob],"ANA_Call_Driver_QR.png",{type:"image/png"});
+
+if(navigator.canShare && navigator.canShare({files:[file]})){
+await navigator.share({
+files:[file],
+title:"ANA Call Driver Service - UPI QR Code",
+text:"பயணக் கட்டணத்தைச் செலுத்த இந்த QR Code-ஐ ஸ்கேன் செய்யவும்.\nUPI: anacalldriverservice@okhdfcbank"
+});
+}else{
+sendPaymentDetails();
+}
+}catch(e){
+sendPaymentDetails();
+}
+}
+
+/* DRIVER JOINING FORM */
+
+function sendDriverForm(){
+const msg=`🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗
+
+வணக்கம்! எங்கள் நிறுவனத்தில் ஓட்டுநராக இணைய விரும்பினால், கீழே உள்ள ஆன்லைன் படிவத்தை பூர்த்தி செய்து சமர்ப்பிக்கவும்:
+
+📝 *ONLINE REGISTRATION LINK:*
+👉 https://tally.so/r/A7eoky
+
+விவரங்களைச் சரிபார்த்து உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
+openWhatsApp(msg);
+}
+
+/* WHATSAPP GROUP */
+
+function sendAnaWhatsAppGroup(){
+const msg=`🚗 *ANA CALL DRIVER SERVICE - GROUPS*
+
+📱 *PHONE NUMBER REGISTRATION:*
+👉 https://t.me/ANADriverRegisterdbot
+
+💬 *GROUP JOINING LINK:*
+👉 https://t.me/+8THVtkFFGew5NDc1
+
+குழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
+openWhatsApp(msg);
+}
+
+/* TELEGRAM GROUP */
+
+function sendAnaTelegramGroup(){
+const regLink="https://t.me/ANADriverRegisterdbot";
+const groupLink="https://t.me/+8THVtkFFGew5NDc1";
+
+const msg=`🚗 ANA CALL DRIVER SERVICE - TELEGRAM
+
+1. Phone Registration Link:
+${regLink}
+
+2. Group Joining Link:
+${groupLink}`;
+
+const url="https://t.me/share/url?url="+encodeURIComponent(groupLink)+"&text="+encodeURIComponent(msg);
+window.open(url,"_blank");
+}
+
+/* SAFETY RULES */
+
+function sendSafetyRules(){
+const msg=`🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️
+
+வணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏
+
+✅ 1. Experienced Drivers Only
+✅ 2. License Verified
+✅ 3. Verified Records Protected
+✅ 4. Zero Tolerance Policy
+✅ 5. Live Driver Verification
+
+⚠️ *முக்கிய அறிவிப்பு:*
+ஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.
+
+📞 தொடர்பு எண்: 7358366165`;
+openWhatsApp(msg);
+}
+
+</script>
 </body>
 </html>
