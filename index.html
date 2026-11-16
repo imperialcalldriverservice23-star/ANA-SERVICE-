@@ -596,115 +596,101 @@
 
     function shareTariffToWhatsApp() {
       const msg = 
-`🚘 *ANA CALL DRIVER SERVICE* 🚘
-
-⭐ 100% TRANSPARENT BILLING SYSTEM
-
-✅ HOUR + KM BASED TARIFF
-✅ START & END METER PHOTO PROOF
-✅ 4-DIGIT CUSTOMER OTP
-✅ INSTANT WHATSAPP DIGITAL BILL
-✅ NO HIDDEN CHARGES
-
-━━━━━━━━━━━━━━
-📊 *OFFICIAL TARIFF RATE CARD*
-
-🚗 4 HOURS PACKAGE
-UP TO 79 KM – *₹550*
-
-🚗 4 HOURS PACKAGE
-80–120 KM – *₹650*
-
-🚗 6 HOURS PACKAGE
-121–139 KM – *₹850*
-
-🚗 8 HOURS PACKAGE
-140–180 KM – *₹1,100*
-
-🚗 10 HOURS PACKAGE
-181–220 KM – *₹1,300*
-
-🚗 12 HOURS PACKAGE
-221–250 KM – *₹1,500*
-
-🚗 OUTSTATION
-ABOVE 250 KM – *₹1,600*
-
-🚗 OUTSTATION
-700 KM UP & DOWN – *₹1,700*
-(12 HOURS / 1 DAY)
-
-🌙 *NIGHT CHARGES*
-*10:00 PM – 5:00 AM*
-Night Charges Applicable for bookings during this time, including 5:00 AM early morning bookings.
-━━━━━━━━━━━━━━
-
-⏱️ EXTRA TIME: *₹100* / HOUR
-⏳ GRACE TIME: *20 MINUTES*
-
-📌 BILLING POLICY
-BOTH HOURS & KILOMETERS ARE CONSIDERED.
-
-📍 CHENNAI CITY & OUTSTATION
-
-❤️ YOUR TRUST IS OUR PRIORITY!
-
-📞 *BOOK NOW*
-ANA CALL DRIVER SERVICE 🚘
-📞 7358366165`;
+"🚘 *ANA CALL DRIVER SERVICE* 🚘\n\n" +
+"⭐ 100% TRANSPARENT BILLING SYSTEM\n\n" +
+"✅ HOUR + KM BASED TARIFF\n" +
+"✅ START & END METER PHOTO PROOF\n" +
+"✅ 4-DIGIT CUSTOMER OTP\n" +
+"✅ INSTANT WHATSAPP DIGITAL BILL\n" +
+"✅ NO HIDDEN CHARGES\n\n" +
+"━━━━━━━━━━━━━━\n" +
+"📊 *OFFICIAL TARIFF RATE CARD*\n\n" +
+"🚗 4 HOURS PACKAGE\n" +
+"UP TO 79 KM – *₹550*\n\n" +
+"🚗 4 HOURS PACKAGE\n" +
+"80–120 KM – *₹650*\n\n" +
+"🚗 6 HOURS PACKAGE\n" +
+"121–139 KM – *₹850*\n\n" +
+"🚗 8 HOURS PACKAGE\n" +
+"140–180 KM – *₹1,100*\n\n" +
+"🚗 10 HOURS PACKAGE\n" +
+"181–220 KM – *₹1,300*\n\n" +
+"🚗 12 HOURS PACKAGE\n" +
+"221–250 KM – *₹1,500*\n\n" +
+"🚗 OUTSTATION\n" +
+"ABOVE 250 KM – *₹1,600*\n\n" +
+"🚗 OUTSTATION\n" +
+"700 KM UP & DOWN – *₹1,700*\n" +
+"(12 HOURS / 1 DAY)\n\n" +
+"🌙 *NIGHT CHARGES*\n" +
+"*10:00 PM – 5:00 AM*\n" +
+"Night Charges Applicable for bookings during this time, including 5:00 AM early morning bookings.\n" +
+"━━━━━━━━━━━━━━\n\n" +
+"⏱️ EXTRA TIME: *₹100* / HOUR\n" +
+"⏳ GRACE TIME: *20 MINUTES*\n\n" +
+"📌 BILLING POLICY\n" +
+"BOTH HOURS & KILOMETERS ARE CONSIDERED.\n\n" +
+"📍 CHENNAI CITY & OUTSTATION\n\n" +
+"❤️ YOUR TRUST IS OUR PRIORITY!\n\n" +
+"📞 *BOOK NOW*\n" +
+"ANA CALL DRIVER SERVICE 🚘\n" +
+"📞 7358366165";
 
       openWhatsApp(msg);
       closeTariffModal();
     }
 
     function sendWelcome() {
-      const msg = `⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡
-✨ _Safe | Reliable | 100% Professional_ ✨
-
-Thank you for contacting us! 🙏 We are always ready to drive you safely! 🚗💨
-
-🏆 *DIGITAL METER BILLING!* ⏱️🚘
-No hidden charges! Purely based on *Actual KM + Duration*.
-
-🟢 *Trip Start:* Start KM & Time Photo
-🔴 *Trip End:* Final Speedometer Reading
-🧾 *Fair Bill:* Exact bill generated automatically! 💯
-
-⭐ 100% Police Verified Drivers | 5-Star Service
-📞 24/7 Helpline: 7358366165`;
+      const msg = `⚡ *WELCOME TO ANA CALL DRIVER SERVICE* ⚡\n✨ _Safe | Reliable | 100% Professional_ ✨\n\nThank you for contacting us! 🙏 We are always ready to drive you safely! 🚗💨\n\n🏆 *DIGITAL METER BILLING!* ⏱️🚘\nNo hidden charges! Purely based on *Actual KM + Duration*.\n\n🟢 *Trip Start:* Start KM & Time Photo\n🔴 *Trip End:* Final Speedometer Reading\n🧾 *Fair Bill:* Exact bill generated automatically! 💯\n\n⭐ 100% Police Verified Drivers | 5-Star Service\n📞 24/7 Helpline: 7358366165`;
       openWhatsApp(msg);
     }
 
     function sendBookingFormat() {
-      const msg = `📝 *ANA CALL DRIVER SERVICE - BOOKING DETAILS* 🚗
-
-டிரைவர் முன்பதிவு செய்ய கீழே உள்ள விவரங்களை நிரப்பி அனுப்பவும்:
-
-👤 வாடிக்கையாளர் பெயர்:
-📍 பிக்கப் இடம் (Pickup Location):
-🏁 சேருமிடம் (Destination):
-📅 தேதி (Date):
-⏰ நேரம் (Pickup Time):
-🚗 கார் வகை (Manual / Automatic):
-⌛ தேவையான பேக்கேஜ் (Hours):
-
-விவரங்கள் கிடைத்தவுடன் டிரைவர் உறுதி செய்யப்படுவார். நன்றி! 🙏`;
+      const msg = `📝 *ANA CALL DRIVER SERVICE - BOOKING DETAILS* 🚗\n\nடிரைவர் முன்பதிவு செய்ய கீழே உள்ள விவரங்களை நிரப்பி அனுப்பவும்:\n\n👤 வாடிக்கையாளர் பெயர்:\n📍 பிக்கப் இடம் (Pickup Location):\n🏁 சேருமிடம் (Destination):\n📅 தேதி (Date):\n⏰ நேரம் (Pickup Time):\n🚗 கார் வகை (Manual / Automatic):\n⌛ தேவையான பேக்கேஜ் (Hours):\n\nவிவரங்கள் கிடைத்தவுடன் டிரைவர் உறுதி செய்யப்படுவார். நன்றி! 🙏`;
       openWhatsApp(msg);
     }
 
     function sendPaymentDetails() {
       const qrLink = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=upi://pay?pa=anacalldriverservice@okhdfcbank%26pn=ANA%20CALL%20DRIVER%20SERVICE%26cu=INR";
-      const msg = `💳 *ANA CALL DRIVER SERVICE - PAYMENT DETAILS* 📲
-
-பயணக் கட்டணத்தை கீழே உள்ள முறையில் செலுத்தலாம்:
-
-📱 *UPI ID:* anacalldriverservice@okhdfcbank
-📞 *GPay / PhonePe Number:* 7358366165
-👤 *Account Name:* ANA Call Driver Service
-
-🖼️ *QR Code மூலம் ஸ்கேன் செய்து செலுத்த இந்த லிங்கைத் தொடவும்:*
-👉 ${qrLink}
-
-பணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
+      const msg = `💳 *ANA CALL DRIVER SERVICE - PAYMENT DETAILS* 📲\n\nபயணக் கட்டணத்தை கீழே உள்ள முறையில் செலுத்தலாம்:\n\n📱 *UPI ID:* anacalldriverservice@okhdfcbank\n📞 *GPay / PhonePe Number:* 7358366165\n👤 *Account Name:* ANA Call Driver Service\n\n🖼️ *QR Code மூலம் ஸ்கேன் செய்து செலுத்த இந்த லிங்கைத் தொடவும்:*\n👉 ${qrLink}\n\nபணம் செலுத்திய பின் ரசீதை (Screenshot) அனுப்பவும். நன்றி! 🙏`;
       openWhatsApp(msg);
-      c
+      closeQrModal();
+    }
+
+    function sendNoDriver() {
+      const msg = `🚫 *ANA CALL DRIVER SERVICE - STATUS UPDATE* 🚫\n\nDear Customer, currently all our professional drivers are assigned to ongoing trips in your area. 🚗💨\n\nWe will notify you immediately once a driver becomes available. We sincerely apologize for the inconvenience! 🙏`;
+      openWhatsApp(msg);
+    }
+
+    function sendLocation() {
+      const msg = `📍 *ANA CALL DRIVER SERVICE* 📍\n\nDear Customer, kindly share your exact Live Location or Pickup Address on WhatsApp so our assigned driver can reach your location promptly! 🚗🗺️`;
+      openWhatsApp(msg);
+    }
+
+    function sendDriverForm() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - DRIVER ONBOARDING* 🚗\n\nவணக்கம்! எங்கள் நிறுவனத்தில் ஓட்டுநராக இணைய விரும்பினால், கீழே உள்ள ஆன்லைன் படிவத்தை (Online Form) பூர்த்தி செய்து சமர்ப்பிக்கவும்:\n\n📝 *ஆன்லைன் பதிவு லிங்க்:*\n👉 https://tally.so/r/A7eoky\n\nவிவரங்களைச் சரிபார்த்து உடனடியாக உங்கள் கணக்கு செயல்படுத்தப்படும். நன்றி!`;
+      openWhatsApp(msg);
+    }
+
+    function sendAnaWhatsAppGroup() {
+      const msg = `🚗 *ANA CALL DRIVER SERVICE - WHATSAPP GROUPS* 💬\n\nவணக்கம்! ANA வாட்ஸ்அப் குழுக்களில் இணைவதற்கும் மற்றும் நம்பர் பதிவு செய்வதற்கும் கீழே உள்ள லிங்குகளைப் பயன்படுத்தவும்:\n\n📱 *1. ஃபோன் நம்பர் ரெஜிஸ்ட்ரேஷன் லிங்க்:*\n👉 https://t.me/ANADriverRegisterdbot\n\n💬 *2. குரூப் ஜாயினிங் லிங்க்:*\n👉 https://t.me/+8THVtkFFGew5NDc1\n\nகுழுவில் இணைந்து விபரங்களைப் பெற்றுக்கொள்ளுங்கள். நன்றி! 🙏`;
+      openWhatsApp(msg);
+    }
+
+    function sendAnaTelegramGroup() {
+      const regLink = "https://t.me/ANADriverRegisterdbot";
+      const groupLink = "https://t.me/+8THVtkFFGew5NDc1";
+      
+      const tgMsg = `🚗 ANA CALL DRIVER SERVICE - TELEGRAM 📱\n\n1. Phone Registration Link:\n${regLink}\n\n2. Group Joining Link:\n${groupLink}`;
+      
+      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(groupLink)}&text=${encodeURIComponent(tgMsg)}`;
+      window.open(telegramUrl, '_blank');
+    }
+
+    function sendSafetyRules() {
+      const msg = `🛡️ *ANA CALL DRIVER SERVICE - CUSTOMER SAFETY & RULES* 🛡️\n\nவணக்கம்! எங்கள் அன்பான வாடிக்கையாளர்களுக்கு... 🙏💐\n\n✅ 1. Experienced Drivers Only\n✅ 2. License Verified\n✅ 3. Verified Records Protected\n✅ 4. Zero Tolerance Policy\n✅ 5. Live Driver Verification\n\n⚠️ *முக்கிய அறிவிப்பு:* \nஓட்டுநர்களை நேரடியாகத் தொடர்புகொள்ள வேண்டாம். மீறினால் நிர்வாகம் பொறுப்பல்ல.\n📞 தொடர்பு எண்: 7358366165`;
+      openWhatsApp(msg);
+    }
+  </script>
+</body>
+</html>
